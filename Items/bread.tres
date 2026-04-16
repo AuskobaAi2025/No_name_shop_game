@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c1i8hgw8u6jg6"]
+
+[ext_resource type="Texture2D" uid="uid://by1scm4giglh5" path="res://image/items/bread.png" id="1_yd40b"]
+[ext_resource type="Script" uid="uid://dex40f5ogifce" path="res://Scripts/item_data.gd" id="2_xl36v"]
+
+[resource]
+script = ExtResource("2_xl36v")
+id = "1002"
+item_name = "Bread"
+price_sell = 100
+price_restock = 50
+icon = ExtResource("1_yd40b")
+metadata/_custom_type_script = "uid://dex40f5ogifce"

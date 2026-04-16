@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://dbtxw1jpbbb5i"]
+
+[ext_resource type="Script" uid="uid://htyirh56y5bx" path="res://Scenes/ui.gd" id="1_jxero"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Theme" id="Theme_qdvrb"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_jxero")
+
+[node name="UI" type="Control" unique_id=943818408]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jxero")
+
+[node name="StatusBar" type="PanelContainer" parent="." unique_id=1780525555]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_qdvrb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar" unique_id=1186667067]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatusBar/HBoxContainer" unique_id=49158846]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StoreNameLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer" unique_id=2039376037]
+layout_mode = 2
+text = "Store Name"
+
+[node name="DateLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer" unique_id=2120865854]
+layout_mode = 2
+text = "Date"
+
+[node name="TotalSalesLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer" unique_id=708074957]
+layout_mode = 2
+text = "Total Sales"
+
+[node name="TotalCustomersLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer" unique_id=426712607]
+layout_mode = 2
+text = "Total Customers"
+
+[node name="StockLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer" unique_id=554707901]
+layout_mode = 2
+text = "Stock Number"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="StatusBar/HBoxContainer" unique_id=68751683]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StoreNameLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer2" unique_id=874666024]
+layout_mode = 2
+text = ": AAA Store"
+
+[node name="DateLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer2" unique_id=1074177997]
+layout_mode = 2
+text = ": X days X years"
+
+[node name="TotalSalesLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer2" unique_id=485804862]
+layout_mode = 2
+text = ": 1,000 $"
+
+[node name="TotalCustomersLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer2" unique_id=1717487196]
+layout_mode = 2
+text = ": 1000 Total Customers"
+
+[node name="StockLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer2" unique_id=244590977]
+layout_mode = 2
+text = ": 100 iteams left"

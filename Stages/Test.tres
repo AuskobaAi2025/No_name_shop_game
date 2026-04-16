@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StageData" format=3 uid="uid://bu2venn4yh36m"]
+
+[ext_resource type="Script" uid="uid://d2d3v4vgdgnsb" path="res://Scripts/stage_data.gd" id="1_2wi7c"]
+
+[resource]
+script = ExtResource("1_2wi7c")
+stage_id = "001"
+stage_name = "TestStage"
+stage_description = "This stage is built for test purpose"
+entrance_position = Vector2(0, 50)
+back_counter_position = Vector2(0, -40)
+metadata/_custom_type_script = "uid://d2d3v4vgdgnsb"

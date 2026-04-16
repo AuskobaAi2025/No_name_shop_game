@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://bitlnmt1icy4d"]
+
+[ext_resource type="Theme" uid="uid://b0ucllms0ffoa" path="res://Themes/inv_item_panel_container.tres" id="1_ohl0e"]
+[ext_resource type="Script" uid="uid://ccp601a8mrgta" path="res://Scripts/item_slot.gd" id="1_qaprs"]
+[ext_resource type="Texture2D" uid="uid://by1scm4giglh5" path="res://image/items/bread.png" id="2_oi8or"]
+[ext_resource type="Theme" uid="uid://bj2fkslmwiy6y" path="res://Themes/inv_item_panel_container_selected.tres" id="3_rka6j"]
+[ext_resource type="Theme" uid="uid://vyf2d825lffk" path="res://Themes/skeleton_button.tres" id="5_pslmm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohl0e"]
+bg_color = Color(0.18431373, 0.40392157, 0.94509804, 0.5019608)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rka6j"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pslmm"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.5254902, 0.60784316, 0.72156864, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5k786"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.32567638, 0.4012214, 0.50540084, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lsnrj"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.2244196, 0.28341284, 0.36474377, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_w2i21"]
+Button/styles/hover = SubResource("StyleBoxFlat_pslmm")
+Button/styles/normal = SubResource("StyleBoxFlat_5k786")
+Button/styles/pressed = SubResource("StyleBoxFlat_lsnrj")
+
+[node name="ItemSlot" type="PanelContainer" unique_id=105487620]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -28.0
+offset_right = 160.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ohl0e")
+script = ExtResource("1_qaprs")
+normal_theme = ExtResource("1_ohl0e")
+selected_theme = ExtResource("3_rka6j")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1145985823]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=477298552]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=950668445]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=1787068727]
+layout_mode = 2
+texture = ExtResource("2_oi8or")
+expand_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=40001869]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/HBoxContainer/CenterContainer" unique_id=1394574342]
+layout_mode = 2
+
+[node name="ItemName" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=940700144]
+layout_mode = 2
+text = "test"
+horizontal_alignment = 1
+
+[node name="AmountGauge" type="ProgressBar" parent="HBoxContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer" unique_id=2020676686]
+custom_minimum_size = Vector2(100, 5)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ohl0e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rka6j")
+max_value = 10.0
+show_percentage = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=919459568]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 6
+
+[node name="RestockButton" type="Button" parent="HBoxContainer/MarginContainer2" unique_id=1726642289]
+layout_mode = 2
+theme = SubResource("Theme_w2i21")
+text = "Restock"
+
+[node name="DisplaySelectButton" type="Button" parent="." unique_id=1090417660]
+layout_mode = 2
+theme = ExtResource("5_pslmm")
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/RestockButton" to="." method="_on_restock_button_pressed"]
+[connection signal="pressed" from="DisplaySelectButton" to="." method="_on_display_select_button_pressed"]

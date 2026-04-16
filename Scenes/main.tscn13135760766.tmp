@@ -1,0 +1,255 @@
+[gd_scene format=3 uid="uid://155xx7s6y6ta"]
+
+[ext_resource type="Script" uid="uid://blyusjbdydqg5" path="res://Scripts/main.gd" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://coar0w52ewb50" path="res://Scenes/shop.tscn" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://cljo0h54ukqrs" path="res://Scripts/game_controller.gd" id="2_jjvhh"]
+[ext_resource type="Theme" uid="uid://1vvdtdswtcvo" path="res://Themes/panel_container.tres" id="4_jjvhh"]
+[ext_resource type="Script" uid="uid://htyirh56y5bx" path="res://Scripts/ui.gd" id="4_kry3j"]
+[ext_resource type="PackedScene" uid="uid://ddaq1m5bowkj3" path="res://Scenes/customer_spawner.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://djie8jnmcanet" path="res://Scenes/store_manger.tscn" id="7_6bp64"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kry3j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21xkr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bp64"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_344ge"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynf5e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 5
+
+[node name="Main" type="Node2D" unique_id=1421725833]
+script = ExtResource("1_8gbba")
+
+[node name="GameController" type="Node2D" parent="." unique_id=907445055]
+script = ExtResource("2_jjvhh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GameController" unique_id=2006469618]
+
+[node name="OperationUI" type="Control" parent="GameController/CanvasLayer" unique_id=1724210418]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_kry3j")
+
+[node name="StatusBar" type="PanelContainer" parent="GameController/CanvasLayer/OperationUI" unique_id=64576131]
+layout_mode = 0
+offset_right = 337.0
+offset_bottom = 185.0
+theme = ExtResource("4_jjvhh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameController/CanvasLayer/OperationUI/StatusBar" unique_id=203994359]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer" unique_id=1177268966]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StoreNameLabel" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer" unique_id=189838471]
+layout_mode = 2
+text = "Store Name"
+
+[node name="DateLabel" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer" unique_id=714676065]
+layout_mode = 2
+text = "Date"
+
+[node name="TotalSalesLabel" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer" unique_id=1077829976]
+layout_mode = 2
+text = "Total Sales"
+
+[node name="TotalCustomersLabel" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer" unique_id=604996989]
+layout_mode = 2
+text = "Total Customers"
+
+[node name="StockLabel" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer" unique_id=185940728]
+layout_mode = 2
+text = "Stock Number"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer" unique_id=1479132846]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StoreNameText" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer2" unique_id=1095813359]
+layout_mode = 2
+text = ": AAA Store"
+
+[node name="DateText" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer2" unique_id=1930484327]
+layout_mode = 2
+text = ": X days X years"
+
+[node name="TotalSalesText" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer2" unique_id=624092563]
+layout_mode = 2
+text = ": 1,000 $"
+
+[node name="TotalCustomersText" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer2" unique_id=862583375]
+layout_mode = 2
+text = ": 1000 Total Customers"
+
+[node name="StockText" type="Label" parent="GameController/CanvasLayer/OperationUI/StatusBar/HBoxContainer/VBoxContainer2" unique_id=1216880056]
+layout_mode = 2
+text = ": 100 iteams left"
+
+[node name="MenuListBar" type="Control" parent="GameController/CanvasLayer/OperationUI" unique_id=750500993]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MessagePanel" type="PanelContainer" parent="GameController/CanvasLayer/OperationUI/MenuListBar" unique_id=15928905]
+layout_mode = 0
+offset_right = 222.0
+offset_bottom = 53.0
+theme = ExtResource("4_jjvhh")
+
+[node name="Label" type="Label" parent="GameController/CanvasLayer/OperationUI/MenuListBar/MessagePanel" unique_id=1317704768]
+layout_mode = 2
+text = "Select a command below"
+
+[node name="ButtonListBar" type="PanelContainer" parent="GameController/CanvasLayer/OperationUI/MenuListBar" unique_id=640058837]
+layout_mode = 0
+offset_top = 460.0
+offset_right = 138.0
+offset_bottom = 648.0
+grow_vertical = 0
+theme = ExtResource("4_jjvhh")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar" unique_id=196957675]
+layout_mode = 2
+
+[node name="RestockButton" type="Button" parent="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2" unique_id=418751063]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Restock items
+"
+flat = true
+alignment = 0
+
+[node name="CleanRoomButton" type="Button" parent="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2" unique_id=1692785777]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Clean room
+"
+flat = true
+alignment = 0
+
+[node name="InfoButton" type="Button" parent="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2" unique_id=1311299301]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Info"
+flat = true
+alignment = 0
+
+[node name="OpenShopButton" type="Button" parent="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2" unique_id=1896240929]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Open shop
+"
+flat = true
+alignment = 0
+
+[node name="CloseShopButton" type="Button" parent="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2" unique_id=2142094469]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Close shop
+"
+flat = true
+alignment = 0
+
+[node name="NextDayButton" type="Button" parent="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2" unique_id=796269641]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Next Day
+"
+flat = true
+alignment = 0
+
+[node name="Camera2D" type="Camera2D" parent="GameController" unique_id=1983475311]
+position = Vector2(0, 10)
+zoom = Vector2(2, 2)
+
+[node name="Shop" parent="." unique_id=190216651 instance=ExtResource("2_bo1nx")]
+script = null
+
+[node name="CustomerSpawner" parent="." unique_id=1808416611 instance=ExtResource("6_21xkr")]
+
+[node name="StoreManger" parent="." unique_id=1062794720 instance=ExtResource("7_6bp64")]
+
+[connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/RestockButton" to="GameController" method="_on_restock_button_pressed"]
+[connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/CleanRoomButton" to="GameController" method="_on_clean_room_button_pressed"]
+[connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/InfoButton" to="GameController" method="_on_info_button_pressed"]
+[connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/OpenShopButton" to="GameController" method="_on_open_shop_button_pressed"]
+[connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/CloseShopButton" to="GameController" method="_on_close_shop_button_pressed"]
+[connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/NextDayButton" to="GameController" method="_on_next_day_button_pressed"]
