@@ -1,0 +1,27 @@
+# Godot 4+
+.godot/
+.import/
+
+# Export
+/android/
+.export/
+.export_presets.cfg
+
+# Mono (使ってる場合)
+.mono/
+data_*/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temp
+tmp/
+temp/
