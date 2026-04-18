@@ -21,7 +21,8 @@ func _process(delta: float) -> void:
 	_hundle_input(delta, player_instance)
 	
 	if ui_instance == null:
-		shop.is_casher1_available = true
+		if not player_instance.is_acting:
+			shop.is_casher1_available = true
 
 
 func _hundle_input(delta: float, player_instance) -> void:

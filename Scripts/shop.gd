@@ -57,10 +57,6 @@ func setup() -> void:
 	set_store_lv(current_stage_data.initial_store_lv)
 	
 
-func _ready() -> void:
-	customer_spawner.setup(self)
-
-
 func open_store() -> void:
 	if is_open:
 		return

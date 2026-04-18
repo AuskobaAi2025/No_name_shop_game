@@ -171,5 +171,4 @@ func _on_timer_timeout() -> void:
 		return
 
 	if not has_bought and shop.is_casher1_available:
-		print(shop.is_casher1_available)
 		buy_items()
