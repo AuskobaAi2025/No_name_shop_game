@@ -3,7 +3,7 @@ extends Control
 var item_slot_scene: PackedScene = preload("res://Scenes/item_slot.tscn")
 
 @onready var item_list: VBoxContainer = $CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer/ItemList
-@onready var texture_button: TextureButton = $CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/TextureButton
+@onready var close_button: Button = $CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/CloseButton
 
 
 var shop: Shop = null
@@ -61,5 +61,5 @@ func _clear_slots() -> void:
 		child.queue_free()
 
 
-func _on_texture_button_pressed() -> void:
+func _on_close_button_pressed() -> void:
 	self.queue_free()

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://rryheufjdaj3" path="res://Scripts/inventory_ui.gd" id="1_os1l6"]
 [ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="2_os1l6"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="3_vr5og"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_os1l6"]
 bg_color = Color(0.2966023, 0.2966023, 0.2966023, 1)
@@ -41,10 +40,9 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=24752943]
 layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/MarginContainer" unique_id=1452310102]
 layout_mode = 2
@@ -53,9 +51,9 @@ size_flags_vertical = 0
 text = "Choose item you want to display
 "
 
-[node name="TextureButton" type="TextureButton" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1414633123]
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=612857055]
 layout_mode = 2
-texture_normal = ExtResource("3_vr5og")
+text = "Close"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=347542814]
 layout_mode = 2
@@ -78,4 +76,4 @@ layout_mode = 2
 position = Vector2(579, 326)
 zoom = Vector2(2, 2)
 
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/CloseButton" to="." method="_on_close_button_pressed"]
