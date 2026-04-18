@@ -15,12 +15,11 @@ var customers_in_line: Array[Customer] = []
 
 func setup(target_shop: Shop) -> void:
 	shop = target_shop
-
-
-func _ready() -> void:
-	item_candidates = Global.item_candidates
-
-	spawn_timer.wait_time = spawn_interval
+	var dataset = shop.current_stage_data
+	
+	item_candidates = dataset.customer_wanted_item_ids
+	
+	spawn_timer.wait_time = dataset.base_spawn_interval
 	spawn_timer.start()
 
 
@@ -48,7 +47,7 @@ func try_spawn_customer() -> void:
 	var amount: int = 1
 
 	customer.setup(item_id, amount, self, shop)
-	customer.position = shop.lv1_entrance_pos
+	customer.position = shop.entrance_pos
 
 	add_child(customer)
 	customers_in_line.append(customer)
@@ -67,7 +66,7 @@ func _update_line_positions() -> void:
 		if customer.is_returning:
 			continue
 
-		var wait_pos := shop.lv1_front_counter1_pos + line_offset * i
+		var wait_pos := shop.front_counter1_pos + line_offset * i
 		customer.set_wait_position(wait_pos)
 
 

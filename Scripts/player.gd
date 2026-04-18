@@ -11,7 +11,7 @@ var shop: Shop = null
 
 func setup(current_shop: Node2D) -> void:
 	shop = current_shop
-	position = shop.lv1_back_counter1_pos
+	position = shop.back_counter1_pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

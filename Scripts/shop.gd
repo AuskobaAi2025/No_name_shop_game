@@ -11,17 +11,20 @@ class_name Shop
 
 var is_open: bool = false
 var is_casher1_available: bool = true
-var current_store_lv: int = 1
+
+var current_store_lv: int
+var max_store_lv: int
+
 var cashier_count: int = 1
-var max_cashier_count: int = 3
+var max_cashier_count: int
 var base_display_item_num: int = 2
 
-# the position for customers in store lv1
-var lv1_entrance_pos : Vector2 = Vector2(0, 50)
-var lv1_front_counter1_pos : Vector2 = Vector2(0, 0)
 
-# the position for the player
-var lv1_back_counter1_pos : Vector2 = Vector2(0, -40)
+@export var current_stage_data: StageData
+
+var entrance_pos : Vector2
+var front_counter1_pos : Vector2
+var back_counter1_pos : Vector2
 
 var daily_customer_count: int = 0
 var daily_purchase_success_count: int = 0
@@ -39,9 +42,23 @@ var max_display_item_count: int = 2
 #	get:
 #		return shop.get_display_item_num()
 
+
+func setup() -> void:
+	#Postion
+	entrance_pos = current_stage_data.entrance_pos
+	front_counter1_pos = current_stage_data.front_counter1_pos
+	back_counter1_pos = current_stage_data.back_counter1_pos
+	
+	#Cashier
+	max_cashier_count = current_stage_data.max_cashier_count
+	
+	#Store level
+	max_store_lv = current_stage_data.max_store_lv
+	set_store_lv(current_stage_data.initial_store_lv)
+	
+
 func _ready() -> void:
 	customer_spawner.setup(self)
-	set_store_lv(current_store_lv)
 
 
 func open_store() -> void:
@@ -128,6 +145,10 @@ func get_display_item_num() -> int:
 
 
 func set_store_lv(target_lv: int) -> void:
+	if target_lv > max_store_lv:
+		print("[shop.gd]: target_lv is greater than max_store_lv")
+		return
+	
 	current_store_lv = target_lv
 
 	match target_lv:

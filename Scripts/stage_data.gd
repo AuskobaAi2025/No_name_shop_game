@@ -9,29 +9,29 @@ class_name StageData
 @export_multiline var stage_description: String = ""
 
 # =========================
-# Stop
+# Shop
+@export var initial_store_lv: int
+@export var max_store_lv: int
+
+@export var max_cashier_count: int
+
+@export var entrance_pos: Vector2
+@export var front_counter1_pos: Vector2
+@export var back_counter1_pos: Vector2
 # =========================
-@export var initial_store_level: int = 1
-@export var max_store_level: int = 1
-@export var entrance_position: Vector2
-@export var front_counter_position: Vector2
-@export var back_counter_position: Vector2
 
 # =========================
 # Customer
 # =========================
 @export var base_spawn_chance: float = 0.3
-@export var customer_wanted_item_ids: Array[String] = []
-@export var spawn_interval_multiplier: float = 1.0
-@export var customer_wait_tolerance: float = 8.0
-@export var customer_satisfaction_bonus: float = 0.0
-@export var customer_satisfaction_penalty: float = 0.0
+@export var base_spawn_interval: float = 3.0
+@export var customer_wait_tolerance: float
 
 # =========================
-# 売れやすさ補正（あると便利）
+# Items
 # =========================
+@export var customer_wanted_item_ids: Array[String] = []
 @export var preferred_item_ids: Array[String] = []
-@export var unpopular_item_ids: Array[String] = []
 
 # =========================
 # 店の拡張条件（あると便利）

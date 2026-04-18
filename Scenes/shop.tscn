@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ctn4skimp326w" path="res://Scripts/shop.gd" id="1_3ps1r"]
 [ext_resource type="Texture2D" uid="uid://b78da8f0b83ny" path="res://image/Tileset House.png" id="1_8j60k"]
 [ext_resource type="Texture2D" uid="uid://3t4tlho66jgd" path="res://image/carpet.png" id="2_fo5ed"]
+[ext_resource type="Resource" uid="uid://bu2venn4yh36m" path="res://Stages/Test.tres" id="2_ymrm4"]
 [ext_resource type="Texture2D" uid="uid://bu75k2ys6s28g" path="res://image/table.png" id="3_8j60k"]
 [ext_resource type="Texture2D" uid="uid://dlju4h1joodf6" path="res://image/Candle 3.png" id="4_o06y3"]
 [ext_resource type="Texture2D" uid="uid://blsrnhl5up8lf" path="res://image/dresser.png" id="5_fo5ed"]
@@ -2757,6 +2758,7 @@ animations = [{
 
 [node name="Shop" type="Node2D" unique_id=190216651]
 script = ExtResource("1_3ps1r")
+current_stage_data = ExtResource("2_ymrm4")
 
 [node name="StoreLv1" type="Node" parent="." unique_id=798567277]
 

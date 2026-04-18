@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var customer_spawner: CustomerSpawner = $Shop/CustomerSpawner
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var shop: Shop = $Shop
 
@@ -13,7 +14,7 @@ func _ready() -> void:
 	Global.base_chance = 0.5
 	Global.store_fame = 0.1
 	
-	game_start(1)
+	game_start()
 
 
 func _process(delta: float) -> void:
@@ -31,12 +32,14 @@ func _hundle_input(delta: float, player_instance) -> void:
 		pass
 
 
-func game_start(store_level: int) -> void:
+func game_start() -> void:
+	shop.setup()
+	
+	customer_spawner.setup(shop)
+	
 	player_instance = player_scene.instantiate()
 	player_instance.setup(shop)
 	add_child(player_instance)
-	
-	shop.set_store_lv(store_level)
 
 
 func _on_restock_button_pressed() -> void:

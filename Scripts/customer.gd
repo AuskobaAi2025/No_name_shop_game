@@ -18,7 +18,7 @@ var shop: Shop = null
 var satisfaction_score: float = 100.0
 var satisfaction_state: String = "normal"
 var wait_time: float = 0.0
-var max_tolerable_wait_time: float = 10.0
+var max_tolerable_wait_time: float
 var could_buy_desired_item: bool = false
 var left_reason: String = ""
 
@@ -28,13 +28,15 @@ func setup(item_id: String, amount: int, owner_spawner: CustomerSpawner, target_
 	desired_amount = amount
 	spawner = owner_spawner
 	shop = target_shop
+	
+	max_tolerable_wait_time = shop.current_stage_data.customer_wait_tolerance
 
 
 func _ready() -> void:
 	if shop != null:
 		shop.register_customer_visit()
-		target_position = shop.lv1_entrance_pos
-
+		target_position = shop.entrance_pos
+		
 
 func _process(delta: float) -> void:
 	if not is_returning and not has_bought:
@@ -50,7 +52,7 @@ func _process(delta: float) -> void:
 
 func _on_reached_target() -> void:
 	if is_returning:
-		if shop != null and position.distance_to(shop.lv1_entrance_pos) < 1.0:
+		if shop != null and position.distance_to(shop.entrance_pos) < 1.0:
 			if spawner != null:
 				spawner.on_customer_left(self)
 			queue_free()
@@ -153,7 +155,7 @@ func finalize_customer_result() -> void:
 func start_returning() -> void:
 	is_returning = true
 	if shop != null:
-		target_position = shop.lv1_entrance_pos
+		target_position = shop.entrance_pos
 
 
 func set_wait_position(pos: Vector2) -> void:
@@ -169,4 +171,5 @@ func _on_timer_timeout() -> void:
 		return
 
 	if not has_bought and shop.is_casher1_available:
+		print(shop.is_casher1_available)
 		buy_items()
