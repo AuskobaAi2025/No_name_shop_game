@@ -33,29 +33,49 @@ grow_vertical = 2
 layout_mode = 2
 theme = ExtResource("2_os1l6")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer" unique_id=347542814]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1056455942]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/HBoxContainer" unique_id=141586758]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1999178920]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=24752943]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/MarginContainer" unique_id=1452310102]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Choose item you want to display
+"
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1414633123]
+layout_mode = 2
+texture_normal = ExtResource("3_vr5og")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=347542814]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=141586758]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_os1l6")
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/HBoxContainer" unique_id=37462433]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=37462433]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ItemList" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/MarginContainer" unique_id=98842508]
+[node name="ItemList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=98842508]
 layout_mode = 2
-
-[node name="TextureButton" type="TextureButton" parent="CenterContainer/PanelContainer/HBoxContainer" unique_id=1414633123]
-layout_mode = 2
-texture_normal = ExtResource("3_vr5og")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1229469958]
 position = Vector2(579, 326)
 zoom = Vector2(2, 2)
 
-[connection signal="pressed" from="CenterContainer/PanelContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/TextureButton" to="." method="_on_texture_button_pressed"]

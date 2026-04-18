@@ -2,8 +2,9 @@ extends Control
 
 var item_slot_scene: PackedScene = preload("res://Scenes/item_slot.tscn")
 
-@onready var item_list: VBoxContainer = $CenterContainer/PanelContainer/HBoxContainer/MarginContainer/ItemList
-@onready var texture_button: TextureButton = $CenterContainer/PanelContainer/HBoxContainer/TextureButton
+@onready var item_list: VBoxContainer = $CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer/ItemList
+@onready var texture_button: TextureButton = $CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/TextureButton
+
 
 var shop: Shop = null
 
