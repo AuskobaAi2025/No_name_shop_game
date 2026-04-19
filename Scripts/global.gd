@@ -2,7 +2,7 @@ extends Node
 
 var store_name: String
 var date: int
-var sales: float
+var money: float
 var customer_num_daily: int
 var customer_num_total: int
 

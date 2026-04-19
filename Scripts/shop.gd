@@ -3,19 +3,18 @@ class_name Shop
 
 @onready var customer_spawner: CustomerSpawner = $CustomerSpawner
 
-@onready var floor_layer_lv1: TileMapLayer = $StoreLv1/FloorLayer
-@onready var floor_layer_lv2: TileMapLayer = $StoreLv2/FloorLayer
-@onready var dresser_1: Sprite2D = $Interiors/Dresser1
-@onready var dresser_2: Sprite2D = $Interiors/Dresser2
+var store_lv1: PackedScene = preload("res://Scenes/Stores/store_lv_1.tscn")
+var store_lv2: PackedScene = preload("res://Scenes/Stores/store_lv_2.tscn")
 
 
 var is_open: bool = false
 var is_casher1_available: bool = true
 
+var current_store: Node2D
 var current_store_lv: int
 var max_store_lv: int
 
-var cashier_count: int = 1
+var cashier_count: int
 var max_cashier_count: int
 var base_display_item_num: int = 2
 
@@ -44,14 +43,6 @@ var max_display_item_count: int = 2
 
 
 func setup() -> void:
-	#Postion
-	entrance_pos = current_stage_data.entrance_pos
-	front_counter1_pos = current_stage_data.front_counter1_pos
-	back_counter1_pos = current_stage_data.back_counter1_pos
-	
-	#Cashier
-	max_cashier_count = current_stage_data.max_cashier_count
-	
 	#Store level
 	max_store_lv = current_stage_data.max_store_lv
 	set_store_lv(current_stage_data.initial_store_lv)
@@ -131,11 +122,13 @@ func get_max_line_size() -> int:
 func get_display_item_num() -> int:
 	var adding_display_num := 0
 
-	if dresser_1.visible:
-		adding_display_num += 2
+	if current_store.has_node("Interiors/Dresser1"):
+		if current_store.dresser_1.visible:
+			adding_display_num += 2
 
-	if dresser_2.visible:
-		adding_display_num += 2
+	if current_store.has_node("Interiors/Dresser2"):
+		if current_store.dresser_2.visible:
+			adding_display_num += 2
 
 	return base_display_item_num + adding_display_num
 
@@ -146,16 +139,31 @@ func set_store_lv(target_lv: int) -> void:
 		return
 	
 	current_store_lv = target_lv
+	
+	var new_store: Node2D
 
 	match target_lv:
 		1:
-			floor_layer_lv1.visible = true
-			floor_layer_lv2.visible = false
+			new_store = store_lv1.instantiate()
 		2:
-			floor_layer_lv1.visible = false
-			floor_layer_lv2.visible = true
+			new_store = store_lv2.instantiate()
 		_:
 			push_error("Error: invalid store level: %s" % target_lv)
+			
+	if current_store != null:
+		current_store.queue_free()
+		current_store = null
+			
+	add_child(new_store)
+	current_store = new_store
+	current_store_lv = target_lv
+
+	entrance_pos = current_store.entrance_pos
+	front_counter1_pos = current_store.front_counter1_pos
+	back_counter1_pos = current_store.back_counter1_pos
+	
+	cashier_count = current_store.initial_cashier_count
+	max_cashier_count = current_store.max_cashier_count
 
 
 func get_spawn_bonus_from_reputation() -> float:

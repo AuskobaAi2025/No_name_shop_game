@@ -115,7 +115,7 @@ func buy_items() -> void:
 		return
 		
 	InventoryManager.remove_item(desired_item_id, desired_amount)
-	Global.sales += item_data.price_sell * desired_amount
+	Global.money += item_data.price_sell * desired_amount
 
 	has_bought = true
 	could_buy_desired_item = true

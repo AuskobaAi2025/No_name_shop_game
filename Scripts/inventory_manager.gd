@@ -7,6 +7,7 @@ var item_list: Array[ItemData] = []
 var item_database: Dictionary = {}
 var inventory: Dictionary = {}
 
+
 func _ready():
 	_auto_load_items()
 
@@ -25,8 +26,19 @@ func _auto_load_items():
 			item_database[item.id] = item
 
 
+func get_save_data() -> Dictionary:
+	return inventory.duplicate(true)
+
+func load_from_data(data: Dictionary) -> void:
+	inventory.clear()
+
+	for item_id in data.keys():
+		inventory[item_id] = int(data[item_id])
+
+
 func reset():
 	inventory.clear()
+	emit_signal("inventory_changed")
 
 
 func add_item(item_id: String, amount: int = 1, is_setup: bool = false) -> int:
@@ -45,7 +57,7 @@ func add_item(item_id: String, amount: int = 1, is_setup: bool = false) -> int:
 		emit_signal("inventory_changed")
 		return added
 	
-	Global.sales -= item_data.price_restock * amount
+	Global.money -= item_data.price_restock * amount
 	inventory[item_id] = new_amount
 	emit_signal("inventory_changed")
 	return added	

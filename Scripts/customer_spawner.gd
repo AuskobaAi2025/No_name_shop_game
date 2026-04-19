@@ -21,28 +21,37 @@ func setup(target_shop: Shop) -> void:
 	
 	spawn_timer.wait_time = dataset.base_spawn_interval
 	spawn_timer.start()
-
+		
 
 func _on_spawn_timer_timeout() -> void:
+	print("Timer has been called")
 	try_spawn_customer()
 
 
 func try_spawn_customer() -> void:
+	print("try_spawn_customer() has been called")
+
 	if shop == null:
+		print("[CustomerSpawner] shop is null → return")
 		return
 
 	var max_customers_in_line := shop.get_max_line_size()
+	print("[CustomerSpawner] max_line_size: %d, current: %d" % [max_customers_in_line, customers_in_line.size()])
 
 	if not can_spawn_customer():
+		print("[CustomerSpawner] can_spawn_customer() = false → return")
 		return
 
 	if not should_spawn_customer():
+		print("[CustomerSpawner] should_spawn_customer() = false → return")
 		return
 
 	if customers_in_line.size() >= max_customers_in_line:
+		print("[CustomerSpawner] line is full → return")
 		return
 
 	var customer: Customer = customer_scene.instantiate()
+
 	var item_id: String = item_candidates.pick_random()
 	var amount: int = 1
 
@@ -51,6 +60,8 @@ func try_spawn_customer() -> void:
 
 	add_child(customer)
 	customers_in_line.append(customer)
+
+	print("[CustomerSpawner] customer spawned. new count: %d" % customers_in_line.size())
 
 	_update_line_positions()
 

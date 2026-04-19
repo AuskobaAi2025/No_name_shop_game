@@ -25,5 +25,5 @@ func _process(delta: float) -> void:
 func _update_status_bar() -> void:
 	store_name_text.text = ": " + Global.store_name
 	date_text.text = ": " + str(Global.date)
-	total_sales_text.text = ": " + str(Global.sales)
+	total_sales_text.text = ": " + str(Global.money)
 	total_customers_text.text = ": " + str(Global.customer_num_daily)

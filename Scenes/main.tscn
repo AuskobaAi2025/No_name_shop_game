@@ -5,7 +5,9 @@
 [ext_resource type="Script" uid="uid://cljo0h54ukqrs" path="res://Scripts/game_controller.gd" id="2_jjvhh"]
 [ext_resource type="Theme" uid="uid://1vvdtdswtcvo" path="res://Themes/panel_container.tres" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://htyirh56y5bx" path="res://Scripts/ui.gd" id="4_kry3j"]
-[ext_resource type="PackedScene" uid="uid://ddaq1m5bowkj3" path="res://Scenes/customer_spawner.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://ddaq1m5bowkj3" path="res://Scenes/Managers/customer_spawner.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://cviv8ted166lh" path="res://Scenes/Managers/pause_manager.tscn" id="7_6bp64"]
+[ext_resource type="PackedScene" uid="uid://dxhv4ouwqk2uu" path="res://Scenes/Managers/save_manager.tscn" id="8_344ge"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kry3j"]
 
@@ -235,8 +237,10 @@ zoom = Vector2(2, 2)
 [node name="Shop" parent="GameController" unique_id=190216651 instance=ExtResource("2_bo1nx")]
 
 [node name="CustomerSpawner" parent="GameController/Shop" unique_id=1808416611 instance=ExtResource("6_21xkr")]
-spawn_interval = 3.0
-line_offset = Vector2(0, 24)
+
+[node name="PauseManager" parent="." unique_id=1315884484 instance=ExtResource("7_6bp64")]
+
+[node name="SaveLoadManager" parent="." unique_id=691007868 instance=ExtResource("8_344ge")]
 
 [connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/RestockButton" to="GameController" method="_on_restock_button_pressed"]
 [connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/CleanRoomButton" to="GameController" method="_on_clean_room_button_pressed"]

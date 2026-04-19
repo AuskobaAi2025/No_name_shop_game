@@ -4,8 +4,6 @@
 
 [node name="CustomerSpawner" type="Node" unique_id=1808416611]
 script = ExtResource("1_fp3oa")
-spawn_interval = null
-line_offset = null
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=248726115]
 
