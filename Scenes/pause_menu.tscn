@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bh6em45vhtso8"]
+
+[ext_resource type="Theme" uid="uid://1vvdtdswtcvo" path="res://Themes/panel_container.tres" id="1_8p115"]
+[ext_resource type="Script" uid="uid://bsghm50endro1" path="res://Scripts/pause_menu.gd" id="1_k0w1u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emv3i"]
+bg_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="PauseMenu" type="Control" unique_id=628138291]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k0w1u")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=344152327]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=817019561]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_emv3i")
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer" unique_id=70055941]
+layout_mode = 2
+theme = ExtResource("1_8p115")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/PanelContainer" unique_id=1659713516]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SaveButton" type="Button" parent="CenterContainer/PanelContainer/PanelContainer/VBoxContainer" unique_id=2068671399]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="CenterContainer/PanelContainer/PanelContainer/VBoxContainer" unique_id=759000461]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Load"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/PanelContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/PanelContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]

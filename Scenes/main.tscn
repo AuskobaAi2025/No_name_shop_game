@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cljo0h54ukqrs" path="res://Scripts/game_controller.gd" id="2_jjvhh"]
 [ext_resource type="Theme" uid="uid://1vvdtdswtcvo" path="res://Themes/panel_container.tres" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://htyirh56y5bx" path="res://Scripts/ui.gd" id="4_kry3j"]
+[ext_resource type="PackedScene" uid="uid://bh6em45vhtso8" path="res://Scenes/pause_menu.tscn" id="5_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://ddaq1m5bowkj3" path="res://Scenes/Managers/customer_spawner.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cviv8ted166lh" path="res://Scenes/Managers/pause_manager.tscn" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://dxhv4ouwqk2uu" path="res://Scenes/Managers/save_manager.tscn" id="8_344ge"]
@@ -230,6 +231,9 @@ text = "Next Day
 flat = true
 alignment = 0
 
+[node name="PauseMenu" parent="GameController/CanvasLayer" unique_id=628138291 instance=ExtResource("5_ynf5e")]
+process_mode = 2
+
 [node name="Camera2D" type="Camera2D" parent="GameController" unique_id=1983475311]
 position = Vector2(0, 10)
 zoom = Vector2(2, 2)
@@ -238,9 +242,9 @@ zoom = Vector2(2, 2)
 
 [node name="CustomerSpawner" parent="GameController/Shop" unique_id=1808416611 instance=ExtResource("6_21xkr")]
 
-[node name="PauseManager" parent="." unique_id=1315884484 instance=ExtResource("7_6bp64")]
+[node name="PauseManager" parent="GameController" unique_id=1315884484 instance=ExtResource("7_6bp64")]
 
-[node name="SaveLoadManager" parent="." unique_id=691007868 instance=ExtResource("8_344ge")]
+[node name="SaveLoadManager" parent="GameController" unique_id=691007868 instance=ExtResource("8_344ge")]
 
 [connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/RestockButton" to="GameController" method="_on_restock_button_pressed"]
 [connection signal="pressed" from="GameController/CanvasLayer/OperationUI/MenuListBar/ButtonListBar/VBoxContainer2/CleanRoomButton" to="GameController" method="_on_clean_room_button_pressed"]

@@ -1,7 +1,9 @@
 extends Node2D
 
 @onready var customer_spawner: CustomerSpawner = $Shop/CustomerSpawner
+@onready var pause_manager: PauseManager = $PauseManager
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var pause_menu: Control = $CanvasLayer/PauseMenu
 @onready var shop: Shop = $Shop
 
 var player_scene: PackedScene = preload("res://Scenes/player.tscn")
@@ -42,6 +44,9 @@ func _hundle_input(delta: float, player_instance) -> void:
 func game_start() -> void:
 	shop.setup()
 	customer_spawner.setup(shop)
+	
+	pause_menu.setup(self)
+	pause_manager.setup(pause_menu)
 
 	player_instance = player_scene.instantiate()
 	player_instance.setup(shop)
@@ -65,6 +70,8 @@ func save_game() -> void:
 		print("[GameController] Game saved")
 	else:
 		print("[GameController] Save failed")
+		
+	pause_manager.resume_game()
 
 
 func load_game() -> void:
@@ -91,7 +98,8 @@ func load_game() -> void:
 	update_ui_load()
 
 	print("[GameController] Game loaded")
-
+	
+	pause_manager.resume_game()
 
 func update_ui_load() -> void:
 	pass

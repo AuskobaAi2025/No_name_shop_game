@@ -1,12 +1,11 @@
 extends Node
 class_name PauseManager
 
-@export var pause_menu_path: NodePath
 var pause_menu: Control
 
-func _ready() -> void:
-	if pause_menu_path != NodePath():
-		pause_menu = get_node(pause_menu_path)
+func setup(target_pause_menu: Control) -> void:
+	pause_menu = target_pause_menu
+	if pause_menu:
 		pause_menu.hide()
 
 func _unhandled_input(event: InputEvent) -> void:
