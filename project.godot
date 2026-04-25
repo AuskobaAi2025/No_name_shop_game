@@ -18,8 +18,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*uid://c4euqaqklpp1o"
-InventoryManager="*uid://dae4etsoubhv2"
-SaveLoadManager="*uid://b2limqrbafnvk"
+InventoryManager="*uid://bqqvlp3aldx3e"
+StoreDisplayItemManager="*uid://cnj4ieyenmvhn"
+SaveLoadManager="*uid://dgiht01d67m4m"
+AudioManager="*uid://cmglyj2nr47qq"
 
 [input]
 

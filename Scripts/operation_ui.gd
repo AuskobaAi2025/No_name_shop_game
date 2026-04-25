@@ -1,16 +1,19 @@
 extends Control
 
+class_name OperationUI
+
 #Status bar
 @onready var store_name_text: Label = $StatusBar/HBoxContainer/VBoxContainer2/StoreNameText
 @onready var date_text: Label = $StatusBar/HBoxContainer/VBoxContainer2/DateText
 @onready var total_sales_text: Label = $StatusBar/HBoxContainer/VBoxContainer2/TotalSalesText
 @onready var total_customers_text: Label = $StatusBar/HBoxContainer/VBoxContainer2/TotalCustomersText
 
-
 #Menu list bar
 @onready var menu_list_bar: Control = $MenuListBar
 @onready var message_panel: PanelContainer = $MenuListBar/MessagePanel
 @onready var button_list_bar: PanelContainer = $MenuListBar/ButtonListBar
+
+@onready var comment_container: VBoxContainer = $CustomerVoiceBar/MarginContainer/VBoxContainer/CommentContainer
 
 
 func _ready() -> void:
@@ -27,3 +30,16 @@ func _update_status_bar() -> void:
 	date_text.text = ": " + str(Global.date)
 	total_sales_text.text = ": " + str(Global.money)
 	total_customers_text.text = ": " + str(Global.customer_num_daily)
+
+	
+func add_comment(target_comment) -> void:
+
+	var label := Label.new()
+	label.text = target_comment
+
+	comment_container.add_child(label)
+
+	# 10件を超えたら一番古いものを削除
+	if comment_container.get_child_count() > 10:
+		var oldest := comment_container.get_child(0)
+		oldest.queue_free()

@@ -2769,7 +2769,7 @@ tile_set = SubResource("TileSet_7ovik")
 tile_map_data = PackedByteArray("AAD9//z/AAACAAQAAAD+//z/AAACAAQAAAD///z/AAACAAQAAAAAAPz/AAACAAQAAAABAPz/AAACAAQAAAACAPz/AAACAAQAAAACAPv/AAACAAMAAAABAPv/AAACAAMAAAAAAPv/AAACAAMAAAD///v/AAACAAMAAAD+//v/AAACAAMAAAD9//v/AAACAAMAAAD8//z/AAAAAAEAAAD8//3/AAAAAAEAAAD8//7/AAAAAAEAAAD8////AAAAAAEAAAD8/wAAAAAAAAEAAAD8/wEAAAAAAAEAAAD8/wIAAAAAAAEAAAADAPz/AAAAAAEAAAADAP3/AAAAAAEAAAADAP7/AAAAAAEAAAADAP//AAAAAAEAAAADAAAAAAAAAAEAAAADAAEAAAAAAAEAAAADAAIAAAAAAAEAAAD8//v/AAABAAAAAAADAPv/AAADAAAAAAD8/wMAAAABAAIAAAADAAMAAAADAAIAAAACAAMAAAACAAMAAAABAAMAAAABAAAAAAD+/wMAAAADAAAAAAD9/wMAAAACAAMAAAA=")
 tile_set = SubResource("TileSet_ruik7")
 
-[node name="Interiors" type="Node" parent="." unique_id=183857480]
+[node name="Interiors" type="Node2D" parent="." unique_id=1120650513]
 
 [node name="Cashier" type="Sprite2D" parent="Interiors" unique_id=185480938]
 z_index = 100
@@ -2780,3 +2780,9 @@ texture = ExtResource("3_hoey3")
 position = Vector2(24, -16)
 sprite_frames = SubResource("SpriteFrames_8mfce")
 autoplay = "default"
+
+[node name="ItemIcon1" type="Sprite2D" parent="Interiors/Cashier" unique_id=380772899]
+position = Vector2(-15, -2)
+
+[node name="ItemIcon2" type="Sprite2D" parent="Interiors/Cashier" unique_id=1712790438]
+position = Vector2(6, -2)

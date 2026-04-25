@@ -30,11 +30,6 @@ class_name StageData
 # =========================
 # Items
 # =========================
+@export var hidden_item_ids: Array[String] = []
 @export var customer_wanted_item_ids: Array[String] = []
 @export var preferred_item_ids: Array[String] = []
-
-# =========================
-# 店の拡張条件（あると便利）
-# =========================
-@export var allow_dresser_1: bool = false
-@export var allow_dresser_2: bool = false

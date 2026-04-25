@@ -1,15 +1,20 @@
 extends Node
 
+
 signal inventory_changed
 
-var item_list: Array[ItemData] = []
-
+# For absolute databse for item
 var item_database: Dictionary = {}
+
+# Used for showing in inventory ui
 var inventory: Dictionary = {}
 
+# Used for saving and loading
+var selected_item_ids: Array[String] = []
 
 func _ready():
 	_auto_load_items()
+
 
 func _auto_load_items():
 	var paths = [
@@ -26,14 +31,34 @@ func _auto_load_items():
 			item_database[item.id] = item
 
 
+func register_all_items() -> void:
+	# Registering all items from item_database
+	for item_id in item_database.keys():
+		if not inventory.has(item_id):
+			inventory[item_id] = 0
+
+
+func setup_inventory(hidden_item_ids: Array[String]) -> void:
+	register_all_items()
+
+	for item_id in hidden_item_ids:
+		if inventory.has(item_id):
+			inventory.erase(item_id)
+
+	emit_signal("inventory_changed")
+	
+	
 func get_save_data() -> Dictionary:
 	return inventory.duplicate(true)
-
+	
+	
 func load_from_data(data: Dictionary) -> void:
 	inventory.clear()
-
+	
 	for item_id in data.keys():
 		inventory[item_id] = int(data[item_id])
+
+	emit_signal("inventory_changed")
 
 
 func reset():
@@ -41,40 +66,33 @@ func reset():
 	emit_signal("inventory_changed")
 
 
-func add_item(item_id: String, amount: int = 1, is_setup: bool = false) -> int:
+func add_item(item_id: String, amount: int = 1, should_pay_cost: bool = true) -> int:
 	var item_data: ItemData = get_item_data(item_id)
 	if item_data == null:
 		push_error("Unknown item id: %s" % item_id)
 		return 0
 
-	var current: int = inventory.get(item_id, 0)
-	var new_amount: int = clamp(current + amount, 0, item_data.max_stack)
-	var added: int = new_amount - current
-		
-	if is_setup:
+	var current_amount: int = inventory.get(item_id, 0)
+	var new_amount: int = clamp(current_amount + amount, 0, item_data.max_stack)
+	var added: int = new_amount - current_amount
 
-		inventory[item_id] = new_amount
-		emit_signal("inventory_changed")
-		return added
-	
-	Global.money -= item_data.price_restock * amount
+	if should_pay_cost:
+		Global.money -= item_data.price_restock * added
+
 	inventory[item_id] = new_amount
 	emit_signal("inventory_changed")
-	return added	
-	
+	return added
+
 
 func remove_item(item_id: String, amount: int = 1) -> int:
 	if not inventory.has(item_id):
 		return 0
 
-	var current: int = inventory.get(item_id, 0)
-	var new_amount: int = max(current - amount, 0)
-	var removed: int = current - new_amount
+	var current_amount: int = inventory.get(item_id, 0)
+	var new_amount: int = max(current_amount - amount, 0)
+	var removed: int = current_amount - new_amount
 
-	if new_amount == 0:
-		inventory.erase(item_id)
-	else:
-		inventory[item_id] = new_amount
+	inventory[item_id] = new_amount
 
 	emit_signal("inventory_changed")
 	return removed
@@ -90,6 +108,7 @@ func get_item_name(item_id: String) -> String:
 func get_count(item_id: String) -> int:
 	return inventory.get(item_id, 0)
 
+
 func get_item_data(item_id: String) -> ItemData:
 	return item_database.get(item_id, null)
 
@@ -97,5 +116,20 @@ func get_item_data(item_id: String) -> ItemData:
 func has_item(item_id: String, amount: int = 1) -> bool:
 	return get_count(item_id) >= amount
 
+
 func get_all_item_ids() -> Array:
 	return inventory.keys()
+	
+	
+func unlock_item(item_id: String) -> void:
+	if not item_database.has(item_id):
+		push_error("Unknown item id: %s" % item_id)
+		return
+
+	if inventory.has(item_id):
+		return
+
+	inventory[item_id] = 0
+	emit_signal("inventory_changed")
+	
+	

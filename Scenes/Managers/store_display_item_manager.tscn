@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://w7qf3kllbi5s"]
+
+[ext_resource type="Script" uid="uid://cnj4ieyenmvhn" path="res://Scripts/Managers/store_display_item_manager.gd" id="1_ny56h"]
+
+[node name="StoreDisplayItemManager" type="Node" unique_id=1437207603]
+script = ExtResource("1_ny56h")

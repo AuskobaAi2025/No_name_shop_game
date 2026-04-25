@@ -8,14 +8,17 @@ var customer_scene: PackedScene = preload("res://scenes/customer.tscn")
 @export var spawn_interval: float = 3.0
 @export var line_offset: Vector2 = Vector2(0, 24)
 
-var shop: Shop = null
+var shop: Shop
+var operation_ui: Control
 var item_candidates: Array = []
 var customers_in_line: Array[Customer] = []
 
 
-func setup(target_shop: Shop) -> void:
+func setup(target_shop: Shop, target_ui: Control) -> void:
 	shop = target_shop
 	var dataset = shop.current_stage_data
+	
+	operation_ui = target_ui
 	
 	item_candidates = dataset.customer_wanted_item_ids
 	
@@ -23,8 +26,15 @@ func setup(target_shop: Shop) -> void:
 	spawn_timer.start()
 		
 
+func cleanup_customers() -> void:
+	for customer in customers_in_line:
+		if is_instance_valid(customer):
+			customer.queue_free()
+
+	customers_in_line.clear()
+	
+
 func _on_spawn_timer_timeout() -> void:
-	print("Timer has been called")
 	try_spawn_customer()
 
 
@@ -55,7 +65,7 @@ func try_spawn_customer() -> void:
 	var item_id: String = item_candidates.pick_random()
 	var amount: int = 1
 
-	customer.setup(item_id, amount, self, shop)
+	customer.setup(item_id, amount, self, shop, operation_ui)
 	customer.position = shop.entrance_pos
 
 	add_child(customer)

@@ -1,0 +1,245 @@
+[gd_scene format=3 uid="uid://djliu2e1tm11r"]
+
+[ext_resource type="Theme" uid="uid://1vvdtdswtcvo" path="res://Themes/panel_container.tres" id="1_yt4g3"]
+[ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="2_wu01t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kry3j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21xkr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bp64"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_344ge"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynf5e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 5
+
+[node name="OperationUI" type="Control" unique_id=1975116036]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusBar" type="PanelContainer" parent="." unique_id=1540804092]
+layout_mode = 0
+offset_right = 337.0
+offset_bottom = 185.0
+theme = ExtResource("1_yt4g3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar" unique_id=301668379]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatusBar/HBoxContainer" unique_id=230746265]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StoreNameLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer" unique_id=743944797]
+layout_mode = 2
+text = "Store Name"
+
+[node name="DateLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer" unique_id=129087467]
+layout_mode = 2
+text = "Date"
+
+[node name="TotalSalesLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer" unique_id=582438781]
+layout_mode = 2
+text = "Total Sales"
+
+[node name="TotalCustomersLabel" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer" unique_id=891116161]
+layout_mode = 2
+text = "Total Customers"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="StatusBar/HBoxContainer" unique_id=999247664]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StoreNameText" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer2" unique_id=1374811740]
+layout_mode = 2
+text = ": AAA Store"
+
+[node name="DateText" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer2" unique_id=15415521]
+layout_mode = 2
+text = ": X days X years"
+
+[node name="TotalSalesText" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer2" unique_id=576003295]
+layout_mode = 2
+text = ": 1,000 $"
+
+[node name="TotalCustomersText" type="Label" parent="StatusBar/HBoxContainer/VBoxContainer2" unique_id=511121008]
+layout_mode = 2
+text = ": 1000 Total Customers"
+
+[node name="MenuListBar" type="Control" parent="." unique_id=1505312781]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MessagePanel" type="PanelContainer" parent="MenuListBar" unique_id=1815111609]
+layout_mode = 0
+offset_right = 222.0
+offset_bottom = 53.0
+theme = ExtResource("1_yt4g3")
+
+[node name="Label" type="Label" parent="MenuListBar/MessagePanel" unique_id=949545490]
+layout_mode = 2
+text = "Select a command below"
+
+[node name="ButtonListBar" type="PanelContainer" parent="MenuListBar" unique_id=2111696743]
+layout_mode = 0
+offset_top = 460.0
+offset_right = 138.0
+offset_bottom = 648.0
+grow_vertical = 0
+theme = ExtResource("1_yt4g3")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuListBar/ButtonListBar" unique_id=1770335627]
+layout_mode = 2
+
+[node name="RestockButton" type="Button" parent="MenuListBar/ButtonListBar/VBoxContainer2" unique_id=423130735]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Restock items
+"
+flat = true
+alignment = 0
+
+[node name="CleanRoomButton" type="Button" parent="MenuListBar/ButtonListBar/VBoxContainer2" unique_id=1123546320]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Clean room
+"
+flat = true
+alignment = 0
+
+[node name="InfoButton" type="Button" parent="MenuListBar/ButtonListBar/VBoxContainer2" unique_id=542757371]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Info"
+flat = true
+alignment = 0
+
+[node name="OpenShopButton" type="Button" parent="MenuListBar/ButtonListBar/VBoxContainer2" unique_id=904669133]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Open shop
+"
+flat = true
+alignment = 0
+
+[node name="CloseShopButton" type="Button" parent="MenuListBar/ButtonListBar/VBoxContainer2" unique_id=599108430]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Close shop
+"
+flat = true
+alignment = 0
+
+[node name="NextDayButton" type="Button" parent="MenuListBar/ButtonListBar/VBoxContainer2" unique_id=577872472]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kry3j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
+text = "Next Day
+"
+flat = true
+alignment = 0
+
+[node name="CustomerVoiceBar" type="PanelContainer" parent="." unique_id=1342856694]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme = ExtResource("2_wu01t")
+
+[node name="MarginContainer" type="MarginContainer" parent="CustomerVoiceBar" unique_id=1481361439]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomerVoiceBar/MarginContainer" unique_id=887521626]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CustomerVoiceBar/MarginContainer/VBoxContainer" unique_id=740078444]
+layout_mode = 2
+text = "Voice of Clients"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomerVoiceBar/MarginContainer/VBoxContainer" unique_id=1369290058]
+layout_mode = 2

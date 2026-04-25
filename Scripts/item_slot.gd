@@ -51,9 +51,11 @@ func _on_display_select_button_pressed() -> void:
 	
 func set_selected(value: bool) -> void:
 	if is_selected == value:
+		InventoryManager.selected_item_ids.append(item_id)
 		return
 
 	is_selected = value
+	InventoryManager.selected_item_ids.erase(item_id)
 	_update_style()
 
 

@@ -24,10 +24,6 @@ func _process(delta: float) -> void:
 	check_action_done()
 
 
-func add_stock(item_id: String, amount: int):
-	InventoryManager.add_item(item_id, amount)
-
-
 func check_action_done() -> void:
 	if action_time == action_gauge.max_value:
 		action_time = 0

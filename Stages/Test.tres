@@ -12,5 +12,6 @@ max_cashier_count = 1
 entrance_pos = Vector2(0, 50)
 back_counter1_pos = Vector2(0, -40)
 customer_wait_tolerance = 10.0
+hidden_item_ids = Array[String](["1004", "1005"])
 customer_wanted_item_ids = Array[String](["1001", "1002", "1003"])
 metadata/_custom_type_script = "uid://d2d3v4vgdgnsb"

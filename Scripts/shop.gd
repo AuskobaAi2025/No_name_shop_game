@@ -1,11 +1,12 @@
 extends Node2D
 class_name Shop
 
-@onready var customer_spawner: CustomerSpawner = $CustomerSpawner
 
 var store_lv1: PackedScene = preload("res://Scenes/Stores/store_lv_1.tscn")
 var store_lv2: PackedScene = preload("res://Scenes/Stores/store_lv_2.tscn")
+var customer_spawner: PackedScene = preload("res://Scenes/Managers/customer_spawner.tscn")
 
+var customer_spawner_instance: CustomerSpawner
 
 var is_open: bool = false
 var is_casher1_available: bool = true
@@ -16,7 +17,7 @@ var max_store_lv: int
 
 var cashier_count: int
 var max_cashier_count: int
-var base_display_item_num: int = 2
+var current_num_dressers: int = 0
 
 
 @export var current_stage_data: StageData
@@ -25,28 +26,19 @@ var entrance_pos : Vector2
 var front_counter1_pos : Vector2
 var back_counter1_pos : Vector2
 
-var daily_customer_count: int = 0
-var daily_purchase_success_count: int = 0
-var daily_satisfied_count: int = 0
-var daily_normal_count: int = 0
-var daily_dissatisfied_count: int = 0
-var daily_total_satisfaction: float = 0.0
-var daily_average_satisfaction: float = 0.0
 
-var shop_reputation: float = 0.0
-
-var selected_display_item_ids: Array[String]
-var max_display_item_count: int = 2
-#var max_display_item_count: int:
-#	get:
-#		return shop.get_display_item_num()
-
-
-func setup() -> void:
+func setup(operation_ui: Control) -> void:
 	#Store level
 	max_store_lv = current_stage_data.max_store_lv
 	set_store_lv(current_stage_data.initial_store_lv)
 	
+	customer_spawner_instance = customer_spawner.instantiate()
+	add_child(customer_spawner_instance)
+	customer_spawner_instance.setup(self, operation_ui)
+	
+
+####OPEN and CLOSE####
+
 
 func open_store() -> void:
 	if is_open:
@@ -60,6 +52,77 @@ func close_store() -> void:
 	is_open = false
 	update_daily_average_satisfaction()
 	apply_daily_reputation_result()
+
+
+#####DRESSER######
+
+
+func try_add_dresser() -> bool:
+	if current_store == null:
+		push_error("[Shop] Current store is null")
+		return false
+		
+	return current_store.add_dresser()
+	
+
+func get_dressers_count() -> int:
+	return current_store.dresser_instances.size()
+	
+	
+####CASHIER####
+
+
+func set_cashier_count(value: int) -> void:
+	cashier_count = clamp(value, 0, max_cashier_count)
+
+
+func get_cashier_count() -> int:
+	return cashier_count
+	
+	
+####SAVE AND LOAD####
+
+func get_dresser_save_data() -> Dictionary:
+	if current_store == null:
+		return {}
+
+	if not "dresser_instances" in current_store:
+		return {}
+
+	var data := {
+		"count": current_store.dresser_instances.size()
+	}
+
+	return data
+
+func load_dresser_from_data(data: Dictionary) -> void:
+	if current_store == null:
+		return
+
+	var count: int = int(data.get("count", 0))
+
+	for i in count:
+		current_store.add_dresser()
+
+
+func restore_display_items() -> void:
+	if current_store == null:
+		return
+		
+	for item_id in StoreDisplayItemManager.get_display_item_ids():
+		print(item_id)
+		current_store.add_display_item(item_id)
+
+####STATS####
+
+var daily_customer_count: int = 0
+var daily_purchase_success_count: int = 0
+var daily_satisfied_count: int = 0
+var daily_normal_count: int = 0
+var daily_dissatisfied_count: int = 0
+var daily_total_satisfaction: float = 0.0
+var daily_average_satisfaction: float = 0.0
+var shop_reputation: float = 0.0
 
 
 func reset_daily_stats() -> void:
@@ -107,30 +170,37 @@ func apply_daily_reputation_result() -> void:
 	shop_reputation = clamp(shop_reputation, -100.0, 100.0)
 
 
-func set_cashier_count(value: int) -> void:
-	cashier_count = clamp(value, 0, max_cashier_count)
+func get_spawn_bonus_from_reputation() -> float:
+	return shop_reputation * 0.002
+	
+	
+####OTHERS####
+	
+	
+func resume_customer_spawner(operation_ui: Control) -> void:
+	customer_spawner_instance = customer_spawner.instantiate()
+	add_child(customer_spawner_instance)
+	customer_spawner_instance.setup(self, operation_ui)
+	
+	
+func cleanup_customer_spawner() -> void:
+	if is_instance_valid(customer_spawner_instance.spawn_timer):
+		customer_spawner_instance.spawn_timer.stop()
 
+	for customer in customer_spawner_instance.customers_in_line:
+		if is_instance_valid(customer):
+			customer.queue_free()
 
-func get_cashier_count() -> int:
-	return cashier_count
+	customer_spawner_instance.customers_in_line.clear()
 
 
 func get_max_line_size() -> int:
 	return cashier_count * 3
 
 
-func get_display_item_num() -> int:
-	var adding_display_num := 0
-
-	if current_store.has_node("Interiors/Dresser1"):
-		if current_store.dresser_1.visible:
-			adding_display_num += 2
-
-	if current_store.has_node("Interiors/Dresser2"):
-		if current_store.dresser_2.visible:
-			adding_display_num += 2
-
-	return base_display_item_num + adding_display_num
+func leveup_store() -> void:
+	var target_lv = current_store_lv + 1
+	set_store_lv(target_lv)
 
 
 func set_store_lv(target_lv: int) -> void:
@@ -157,14 +227,11 @@ func set_store_lv(target_lv: int) -> void:
 	add_child(new_store)
 	current_store = new_store
 	current_store_lv = target_lv
-
+	
+	
 	entrance_pos = current_store.entrance_pos
 	front_counter1_pos = current_store.front_counter1_pos
 	back_counter1_pos = current_store.back_counter1_pos
 	
 	cashier_count = current_store.initial_cashier_count
 	max_cashier_count = current_store.max_cashier_count
-
-
-func get_spawn_bonus_from_reputation() -> float:
-	return shop_reputation * 0.002

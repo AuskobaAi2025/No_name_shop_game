@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ddaq1m5bowkj3"]
 
-[ext_resource type="Script" uid="uid://shd8luffmpe5" path="res://Scripts/customer_spawner.gd" id="1_fp3oa"]
+[ext_resource type="Script" uid="uid://cv04s5ouugquw" path="res://Scripts/Managers/customer_spawner.gd" id="1_0202c"]
 
 [node name="CustomerSpawner" type="Node" unique_id=1808416611]
-script = ExtResource("1_fp3oa")
+script = ExtResource("1_0202c")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=248726115]
 

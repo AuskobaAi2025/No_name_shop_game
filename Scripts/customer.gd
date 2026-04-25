@@ -3,6 +3,17 @@ class_name Customer
 
 @onready var timer: Timer = $Timer
 
+var customer_comments: Array[String] = [
+	"いい買い物ができた！",
+	"また来るよ。",
+	"この店、なかなかいいね。",
+	"品揃えが良かった。",
+	"ちょっと高いけど満足。",
+	"探してた物があった！",
+	"接客が良かった。",
+	"また利用したい。"
+]
+
 var is_returning: bool = false
 var has_bought: bool = false
 var has_reported_result: bool = false
@@ -12,8 +23,9 @@ var desired_item_id: String = ""
 var desired_amount: int = 1
 
 var target_position: Vector2
-var spawner: CustomerSpawner = null
-var shop: Shop = null
+var spawner: CustomerSpawner
+var shop: Shop
+var operation_ui: Control
 
 var satisfaction_score: float = 100.0
 var satisfaction_state: String = "normal"
@@ -23,11 +35,12 @@ var could_buy_desired_item: bool = false
 var left_reason: String = ""
 
 
-func setup(item_id: String, amount: int, owner_spawner: CustomerSpawner, target_shop: Shop) -> void:
+func setup(item_id: String, amount: int, owner_spawner: CustomerSpawner, target_shop: Shop, target_ui: Control) -> void:
 	desired_item_id = item_id
 	desired_amount = amount
 	spawner = owner_spawner
 	shop = target_shop
+	operation_ui = target_ui
 	
 	max_tolerable_wait_time = shop.current_stage_data.customer_wait_tolerance
 
@@ -55,6 +68,7 @@ func _on_reached_target() -> void:
 		if shop != null and position.distance_to(shop.entrance_pos) < 1.0:
 			if spawner != null:
 				spawner.on_customer_left(self)
+			AudioManager.play_se("exit")
 			queue_free()
 		return
 
@@ -92,7 +106,7 @@ func buy_items() -> void:
 		return
 		
 		
-	if not desired_item_id in shop.selected_display_item_ids:
+	if not desired_item_id in StoreDisplayItemManager.selected_display_item_ids:
 		has_bought = true
 		could_buy_desired_item = false
 		left_reason = "item_data_not_found"
@@ -130,7 +144,16 @@ func buy_items() -> void:
 	finalize_customer_result()
 	start_returning()
 	
+	AudioManager.play_se("coin")
 	print("[BUY] SUCCESS: ", item_data.item_name, " x", desired_amount, " wait=", wait_time)
+	
+	left_comment()
+	
+	
+func left_comment() -> void:
+	var comment = customer_comments.pick_random()
+	operation_ui.add_comment(comment)
+	
 
 
 func finalize_customer_result() -> void:
