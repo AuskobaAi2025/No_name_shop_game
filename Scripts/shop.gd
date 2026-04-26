@@ -227,6 +227,7 @@ func set_store_lv(target_lv: int) -> void:
 	add_child(new_store)
 	current_store = new_store
 	current_store_lv = target_lv
+	current_store.setup()
 	
 	
 	entrance_pos = current_store.entrance_pos

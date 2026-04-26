@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dnbv2faa4lu2m"]
 
 [ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="1_k2r1s"]
-[ext_resource type="Script" uid="uid://uf8ff1an3jw0" path="res://Scripts/shop_management_screen.gd" id="2_855q5"]
+[ext_resource type="Script" uid="uid://uf8ff1an3jw0" path="res://Scripts/MenuAndUI/shop_management_screen.gd" id="2_855q5"]
 
 [node name="ShopManagementScreen" type="Control" unique_id=867053096]
 layout_mode = 3

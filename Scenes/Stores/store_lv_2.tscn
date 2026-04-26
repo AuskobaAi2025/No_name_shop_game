@@ -1,10 +1,8 @@
 [gd_scene format=4 uid="uid://ds787fvl5i15m"]
 
-[ext_resource type="Script" uid="uid://dvdkajybvlpju" path="res://Scripts/store_lv_2.gd" id="1_k832s"]
+[ext_resource type="Script" uid="uid://dvdkajybvlpju" path="res://Scripts/Stores/store_lv_2.gd" id="1_k832s"]
 [ext_resource type="Texture2D" uid="uid://b78da8f0b83ny" path="res://image/Tileset House.png" id="1_txfgg"]
 [ext_resource type="Texture2D" uid="uid://3t4tlho66jgd" path="res://image/carpet.png" id="2_k832s"]
-[ext_resource type="Texture2D" uid="uid://bu75k2ys6s28g" path="res://image/table.png" id="3_bkrmk"]
-[ext_resource type="Texture2D" uid="uid://dlju4h1joodf6" path="res://image/Candle 3.png" id="4_hurhi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ws0ls"]
 texture = ExtResource("1_txfgg")
@@ -2718,42 +2716,6 @@ texture = ExtResource("1_txfgg")
 [sub_resource type="TileSet" id="TileSet_xmgoi"]
 sources/0 = SubResource("TileSetAtlasSource_8l8hq")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fo5ed"]
-atlas = ExtResource("4_hurhi")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ukr8"]
-atlas = ExtResource("4_hurhi")
-region = Rect2(16, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o06y3"]
-atlas = ExtResource("4_hurhi")
-region = Rect2(32, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k7acu"]
-atlas = ExtResource("4_hurhi")
-region = Rect2(48, 0, 16, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_y8pq7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fo5ed")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ukr8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o06y3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k7acu")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="StoreLv2" type="Node2D" unique_id=1683742101]
 script = ExtResource("1_k832s")
 
@@ -2770,19 +2732,3 @@ tile_map_data = PackedByteArray("AAD7//r/AAACAAQAAAD8//r/AAACAAQAAAD9//r/AAACAAQ
 tile_set = SubResource("TileSet_xmgoi")
 
 [node name="Interiors" type="Node2D" parent="." unique_id=317244722]
-
-[node name="Cashier" type="Sprite2D" parent="Interiors" unique_id=1312082597]
-z_index = 100
-position = Vector2(0, -16)
-texture = ExtResource("3_bkrmk")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Interiors/Cashier" unique_id=134505575]
-position = Vector2(24, -16)
-sprite_frames = SubResource("SpriteFrames_y8pq7")
-autoplay = "default"
-
-[node name="ItemIcon1" type="Sprite2D" parent="Interiors/Cashier" unique_id=909530572]
-position = Vector2(-15, -2)
-
-[node name="ItemIcon2" type="Sprite2D" parent="Interiors/Cashier" unique_id=1998896296]
-position = Vector2(6, -2)

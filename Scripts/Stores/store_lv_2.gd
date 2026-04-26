@@ -4,19 +4,12 @@ class_name StoreLv2
 @onready var interiors: Node2D = $Interiors
 
 
-#Cashier
-@onready var item_icon_1: Sprite2D = $Interiors/Cashier/ItemIcon1
-@onready var item_icon_2: Sprite2D = $Interiors/Cashier/ItemIcon2
-
-
-var cashier_item_id_1: String
-var cashier_item_id_2: String
-
 # Dresser
 var dresser_scene: PackedScene = preload("res://Scenes/Interiors/dresser.tscn")
 var dresser_instance1: Dresser
 var dresser_instance2: Dresser
 var dresser_instances: Array[Dresser] = []
+var max_dresser_count: int = 2	
 
 var dresser_1_pos: Vector2 = Vector2(-40, -64)
 var dresser_2_pos: Vector2 = Vector2(40, -64)
@@ -27,12 +20,19 @@ var front_counter1_pos: Vector2 = Vector2(0, 0)
 var back_counter1_pos: Vector2 = Vector2(0, -40)
 
 # Cashier
+var cashier_scene: PackedScene = preload("res://Scenes/Interiors/cashier.tscn")
+var cashier_instance: Cashier
+
+var cashier_pos: Vector2 = Vector2(0, -16)
 var initial_cashier_count: int = 1
 var max_cashier_count: int = 1
 
-# Dresser
-var max_dresser_count: int = 2
 
+
+func setup() -> void:
+	cashier_instance = cashier_scene.instantiate()
+	interiors.add_child(cashier_instance)
+	cashier_instance.setup(cashier_pos)
 
 
 func get_dresser_count() -> int:
@@ -48,6 +48,7 @@ func get_dresser_count() -> int:
 
 
 func add_dresser() -> bool:
+	# Check the max dresser num of the current store lv
 	if get_dresser_count() >= max_dresser_count:
 		print("[StoreLv2] Failed: Dresser count reached max.")
 		return false
@@ -76,79 +77,52 @@ func add_dresser() -> bool:
 
 func get_dressers() -> Array[Dresser]:
 	var result: Array[Dresser] = []
-
+	
 	for dresser in dresser_instances:
 		if is_instance_valid(dresser):
 			result.append(dresser)
-
+			
 	return result
 
 
-func get_display_capacity() -> int:
-	var total := 0
+func get_displayable_furnitures() -> Array[DisplayableFurniture]:
+	var result: Array[DisplayableFurniture] = []
+
+	if is_instance_valid(cashier_instance):
+		result.append(cashier_instance)
 
 	for dresser in get_dressers():
-		total += dresser.get_capacity()
-
-	return total
+		result.append(dresser)
+		
+	return result
 
 
 func add_display_item(item_id: String) -> void:
 	var item_data: ItemData = InventoryManager.get_item_data(item_id)
 	if item_data == null:
 		return
-		
-	if does_cashier_has_empty_slot():
-		return add_item_to_cashier(item_data)
 
-	for dresser in get_dressers():
-		if dresser.has_empty_slot():
-			return dresser.add_item(item_data)
+	for furniture in get_displayable_furnitures():
+		if furniture.has_empty_slot():
+			furniture.add_item(item_data)
+			return
 
-	print("[Store] No empty dresser slot.")
+	print("[Store] No empty display slot.")
 
 
 func remove_display_item(item_id: String) -> void:
-	if cashier_item_id_1 == item_id:
-		cashier_item_id_1 = ""
-		item_icon_1.texture = null
-		item_icon_1.visible = false
-		return 
-
-	if cashier_item_id_2 == item_id:
-		cashier_item_id_2 = ""
-		item_icon_2.texture = null
-		item_icon_2.visible = false
+	if cashier_instance.remove_item(item_id):
 		return
-		
+
 	for dresser in get_dressers():
 		if dresser.remove_item(item_id):
 			return
 
 
 func clear_display_items() -> void:
+	cashier_instance.clear_items()
+
 	for dresser in get_dressers():
 		dresser.clear_items()
 		
 		
-func does_cashier_has_empty_slot() -> bool:
-	return cashier_item_id_1 == "" or cashier_item_id_2 == ""
-
-
-func add_item_to_cashier(item_data: ItemData) -> bool:
-	if item_data == null:
-		return false
-
-	if cashier_item_id_1 == "":
-		cashier_item_id_1 = item_data.id
-		item_icon_1.texture = item_data.icon
-		item_icon_1.visible = true
-		return true
-
-	if cashier_item_id_2 == "":
-		cashier_item_id_2 = item_data.id
-		item_icon_2.texture = item_data.icon
-		item_icon_2.visible = true
-		return true
-
-	return false
