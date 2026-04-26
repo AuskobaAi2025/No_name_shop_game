@@ -1,5 +1,4 @@
 extends Control
-
 class_name OperationUI
 
 #Status bar
@@ -14,6 +13,12 @@ class_name OperationUI
 @onready var button_list_bar: PanelContainer = $MenuListBar/ButtonListBar
 
 @onready var comment_container: VBoxContainer = $CustomerVoiceBar/MarginContainer/VBoxContainer/CommentContainer
+
+var game_controller: Node2D
+
+
+func setup(controller: Node2D) -> void:
+	game_controller = controller
 
 
 func _ready() -> void:
@@ -43,3 +48,27 @@ func add_comment(target_comment) -> void:
 	if comment_container.get_child_count() > 10:
 		var oldest := comment_container.get_child(0)
 		oldest.queue_free()
+
+
+func _on_restock_button_pressed() -> void:
+	game_controller.show_inventory_menu()
+	
+
+func _on_clean_room_button_pressed() -> void:
+	game_controller.start_clean()
+
+
+func _on_info_button_pressed() -> void:
+	game_controller.show_info_menu()
+
+
+func _on_open_shop_button_pressed() -> void:
+	game_controller.open_shop()
+
+
+func _on_close_shop_button_pressed() -> void:
+	game_controller.close_shop()
+
+
+func _on_next_day_button_pressed() -> void:
+	game_controller.proceed_next_day()

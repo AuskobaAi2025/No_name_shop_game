@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://djliu2e1tm11r"]
 
+[ext_resource type="Script" uid="uid://d3k7xa7o4onm2" path="res://Scripts/operation_ui.gd" id="1_wu01t"]
 [ext_resource type="Theme" uid="uid://1vvdtdswtcvo" path="res://Themes/panel_container.tres" id="1_yt4g3"]
 [ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="2_wu01t"]
 
@@ -26,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wu01t")
 
 [node name="StatusBar" type="PanelContainer" parent="." unique_id=1540804092]
 layout_mode = 0
@@ -241,5 +243,12 @@ layout_mode = 2
 layout_mode = 2
 text = "Voice of Clients"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CustomerVoiceBar/MarginContainer/VBoxContainer" unique_id=1369290058]
+[node name="CommentContainer" type="VBoxContainer" parent="CustomerVoiceBar/MarginContainer/VBoxContainer" unique_id=1369290058]
 layout_mode = 2
+
+[connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/RestockButton" to="." method="_on_restock_button_pressed"]
+[connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/CleanRoomButton" to="." method="_on_clean_room_button_pressed"]
+[connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/InfoButton" to="." method="_on_info_button_pressed"]
+[connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/OpenShopButton" to="." method="_on_open_shop_button_pressed"]
+[connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/CloseShopButton" to="." method="_on_close_shop_button_pressed"]
+[connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/NextDayButton" to="." method="_on_next_day_button_pressed"]

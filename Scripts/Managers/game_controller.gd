@@ -2,16 +2,17 @@ extends Node2D
 
 @onready var pause_manager: PauseManager = $PauseManager
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
-@onready var operation_ui: Control = $CanvasLayer/OperationUI
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
 
 var player_scene: PackedScene = preload("res://Scenes/player.tscn")
+var operation_ui_scene: PackedScene = preload("res://Scenes/UIs/operation_ui.tscn")
 var ui_scene: PackedScene = preload("res://Scenes/UIs/inventory_ui.tscn")
 var shop_management_screen: PackedScene = preload("res://Scenes/UIs/shop_management_screen.tscn")
 var shop: PackedScene = preload("res://Scenes/shop.tscn")
 
 var shop_instance: Shop = null
 var player_instance: Node2D
+var operation_ui_instance: Control
 var ui_instance: Control
 
 
@@ -30,7 +31,6 @@ func _process(delta: float) -> void:
 			shop_instance.is_casher1_available = true
 		
 
-
 func _hundle_input(delta: float, player_instance) -> void:
 	if Input.is_action_just_pressed("test"):
 		pass
@@ -43,19 +43,25 @@ func _hundle_input(delta: float, player_instance) -> void:
 
 
 func game_start() -> void:
-	if is_instance_valid(operation_ui) and not operation_ui.visible:
-		operation_ui.show()
+	if operation_ui_instance == null:
+		operation_ui_instance = operation_ui_scene.instantiate()
+		operation_ui_instance.setup(self)
+		canvas_layer.add_child(operation_ui_instance)
+	
+	else:
+		operation_ui_instance.visible = true
+		
 		
 	if shop_instance == null:
 		shop_instance = shop.instantiate()
 		add_child(shop_instance)
-		shop_instance.setup(operation_ui)
+		shop_instance.setup(operation_ui_instance)
 		
 	else:
 		shop_instance.visible = true
-		shop_instance.resume_customer_spawner(operation_ui)
+		shop_instance.resume_customer_spawner(operation_ui_instance)
 		
-
+	
 	pause_menu.setup(self)
 	pause_manager.setup(pause_menu)
 
@@ -151,11 +157,12 @@ func cleanup_game_scene() -> void:
 		player_instance.queue_free()
 		player_instance = null
 		
-	if is_instance_valid(operation_ui):
-		operation_ui.hide()
+		
+	if is_instance_valid(operation_ui_instance):
+		operation_ui_instance.hide()
 		
 
-func _on_restock_button_pressed() -> void:
+func show_inventory_menu() -> void:
 	var stage_hidden_item_ids: Array[String] = shop_instance.current_stage_data.hidden_item_ids
 	
 	if ui_instance:
@@ -169,26 +176,26 @@ func _on_restock_button_pressed() -> void:
 	shop_instance.is_casher1_available = false
 
 
-func _on_clean_room_button_pressed() -> void:
+func start_clean() -> void:
 	player_instance.start_action("clean")
 	shop_instance.is_casher1_available = false
 
 
-func _on_info_button_pressed() -> void:
+func show_info_menu() -> void:
 	print("Show info")
 
 
-func _on_open_shop_button_pressed() -> void:
+func open_shop() -> void:
 	shop_instance.is_open = true
 	print("Open shop")
 
 
-func _on_close_shop_button_pressed() -> void:
+func close_shop() -> void:
 	shop_instance.is_open = false
 	print("Close shop")
 
 
-func _on_next_day_button_pressed() -> void:
+func proceed_next_day() -> void:
 	shop_instance.apply_daily_reputation_result()
 	Global.date += 1
 	
