@@ -11,6 +11,7 @@ enum WorkRole {
 	CASHIER,
 	CLEANER,
 	STOCKER,
+    RESEARCHER,
 }
 
 
