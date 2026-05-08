@@ -9,6 +9,25 @@ var exp: int = 0 #Unknown, delete if it is not used
 
 var shop: Shop = null
 var worker_manager: WorkerManager
+# Personality enum to adjust research speed
+enum Personality { EFFICIENT, CREATIVE, CURIOUS, CARELESS }
+# Default personality
+var personality: Personality = Personality.EFFICIENT
+
+# Returns research speed multiplier based on personality
+func get_research_multiplier() -> float:
+    match personality:
+        Personality.EFFICIENT:
+            return 1.5
+        Personality.CREATIVE:
+            return 1.0
+        Personality.CURIOUS:
+            return 1.2
+        Personality.CARELESS:
+            return 0.8
+        _:
+            return 1.0
+
 
 func setup(current_shop: Shop, manager: WorkerManager) -> void:
 	shop = current_shop
