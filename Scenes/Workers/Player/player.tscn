@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://be8qbmt0fe144"]
+
+[ext_resource type="Script" uid="uid://cwqmrrjai1glx" path="res://Scenes/Workers/Player/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_v0iea"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvnsp"]
+bg_color = Color(0.4351923, 0.43519226, 0.43519226, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t5aa"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Player" type="CharacterBody2D" unique_id=1383542754]
+z_index = 20
+script = ExtResource("1_cvnsp")
+metadata/_custom_type_script = "uid://yhgtorpcftws"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1416050224]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_v0iea")
+
+[node name="ActionGauge" type="ProgressBar" parent="." unique_id=1011091589]
+visible = false
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 16.0
+offset_bottom = -19.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cvnsp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6t5aa")
+show_percentage = false

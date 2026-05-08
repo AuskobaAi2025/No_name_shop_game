@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cvy5d16l0v2ta"]
+
+[ext_resource type="Script" uid="uid://b8c7p35bshg8d" path="res://Scenes/Core/Systems/worker_manager.gd" id="1_fnlkb"]
+
+[node name="WorkerManager" type="Node" unique_id=1286565629]
+script = ExtResource("1_fnlkb")

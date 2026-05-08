@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b8c1splq1ie3t"]
+
+[ext_resource type="Script" uid="uid://dex40f5ogifce" path="res://Resources/item_data.gd" id="1_7cb0h"]
+[ext_resource type="Texture2D" uid="uid://pdf55ulfwbhj" path="res://image/items/spear.png" id="1_o33or"]
+
+[resource]
+script = ExtResource("1_7cb0h")
+id = "1041"
+item_name = "Spear"
+price_sell = 500
+price_restock = 200
+icon = ExtResource("1_o33or")
+metadata/_custom_type_script = "uid://dex40f5ogifce"

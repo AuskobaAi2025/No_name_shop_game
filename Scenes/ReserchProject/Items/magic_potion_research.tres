@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ResearchProjectData" format=3 uid="uid://corxjewt7jofd"]
+
+[ext_resource type="Texture2D" uid="uid://bv764ij55fibf" path="res://image/items/magic_potion.png" id="1_2ddhg"]
+[ext_resource type="Script" uid="uid://ryv4v74xkmal" path="res://Scenes/ReserchProject/research_project_data.gd" id="2_m6o5q"]
+
+[resource]
+script = ExtResource("2_m6o5q")
+project_id = "1013"
+project_name = "Magic Potion Research"
+unlocked_item_ids = Array[String](["magic_potion"])
+prerequisite_project_ids = Array[String](["1013"])
+category = "Alchemy"
+icon = ExtResource("1_2ddhg")
+metadata/_custom_type_script = "uid://ryv4v74xkmal"

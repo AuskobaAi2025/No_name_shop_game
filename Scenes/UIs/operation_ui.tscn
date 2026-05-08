@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djliu2e1tm11r"]
 
-[ext_resource type="Script" uid="uid://d3k7xa7o4onm2" path="res://Scripts/MenuAndUI/operation_ui.gd" id="1_wu01t"]
+[ext_resource type="Script" uid="uid://d3k7xa7o4onm2" path="res://Scenes/UIs/operation_ui.gd" id="1_wu01t"]
 [ext_resource type="Theme" uid="uid://1vvdtdswtcvo" path="res://Themes/panel_container.tres" id="1_yt4g3"]
 [ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="2_wu01t"]
 
@@ -144,7 +144,7 @@ text = "Clean room
 flat = true
 alignment = 0
 
-[node name="InfoButton" type="Button" parent="MenuListBar/ButtonListBar/VBoxContainer2" unique_id=542757371]
+[node name="WorkerInfoButton" type="Button" parent="MenuListBar/ButtonListBar/VBoxContainer2" unique_id=542757371]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
@@ -158,7 +158,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_21xkr")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_6bp64")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_344ge")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ynf5e")
-text = "Info"
+text = "Worker info"
 flat = true
 alignment = 0
 
@@ -248,7 +248,7 @@ layout_mode = 2
 
 [connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/RestockButton" to="." method="_on_restock_button_pressed"]
 [connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/CleanRoomButton" to="." method="_on_clean_room_button_pressed"]
-[connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/InfoButton" to="." method="_on_info_button_pressed"]
+[connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/WorkerInfoButton" to="." method="_on_worker_info_button_pressed"]
 [connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/OpenShopButton" to="." method="_on_open_shop_button_pressed"]
 [connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/CloseShopButton" to="." method="_on_close_shop_button_pressed"]
 [connection signal="pressed" from="MenuListBar/ButtonListBar/VBoxContainer2/NextDayButton" to="." method="_on_next_day_button_pressed"]

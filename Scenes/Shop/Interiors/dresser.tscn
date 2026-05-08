@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://db3jbb7oqnlso"]
+
+[ext_resource type="Texture2D" uid="uid://blsrnhl5up8lf" path="res://image/dresser.png" id="1_x8xdg"]
+[ext_resource type="Script" uid="uid://ckql0lerckqg2" path="res://Scenes/Shop/Interiors/dresser.gd" id="2_v7204"]
+
+[node name="Dresser" type="Sprite2D" unique_id=1147924971]
+z_index = 40
+position = Vector2(-40, -64)
+texture = ExtResource("1_x8xdg")
+script = ExtResource("2_v7204")
+display_capacity_bonus = 2
+slot_count = 2
+slot_positions = Array[Vector2]([Vector2(10, -12), Vector2(-10, -12)])
+
+[node name="ItemIcon1" type="Sprite2D" parent="." unique_id=155026271]
+position = Vector2(-10, -12)
+
+[node name="ItemIcon2" type="Sprite2D" parent="." unique_id=1268840974]
+position = Vector2(10, -12)

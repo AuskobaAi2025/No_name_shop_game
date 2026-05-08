@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://da70jj3fidugn"]
+
+[ext_resource type="Script" uid="uid://yhgtorpcftws" path="res://Scenes/Workers/base_worker.gd" id="1_24kag"]
+
+[node name="BaseWorker" type="CharacterBody2D" unique_id=682914081]
+script = ExtResource("1_24kag")

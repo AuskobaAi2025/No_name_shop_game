@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ResearchProjectData" format=3 uid="uid://4qxxtdeekhj8"]
+
+[ext_resource type="Texture2D" uid="uid://cidk8x4abpj6r" path="res://image/items/high_potion.png" id="1_3ypcm"]
+[ext_resource type="Script" uid="uid://ryv4v74xkmal" path="res://Scenes/ReserchProject/research_project_data.gd" id="2_r1a5v"]
+
+[resource]
+script = ExtResource("2_r1a5v")
+project_id = "1012"
+project_name = "High Potion Research"
+unlocked_item_ids = Array[String](["high_potion"])
+required_item_ids = Array[String](["1011"])
+category = "Alchemy"
+icon = ExtResource("1_3ypcm")
+metadata/_custom_type_script = "uid://ryv4v74xkmal"

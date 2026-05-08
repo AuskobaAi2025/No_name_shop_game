@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c56y06aokux6h"]
+
+[ext_resource type="Script" uid="uid://bu2psgda14w2n" path="res://Scenes/Workers/HiredWorker/hired_worker.gd" id="1_o6nas"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_fiitx"]
+
+[node name="HiredWorker" type="CharacterBody2D" unique_id=1143147551]
+z_index = 20
+script = ExtResource("1_o6nas")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1896730319]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_fiitx")

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://d0cq046c15c4h"]
+
+[ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="1_rxi4u"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_aymtj"]
+[ext_resource type="Script" uid="uid://cm5076rve1f74" path="res://Scenes/UIs/worker_slot.gd" id="2_yqsxc"]
+[ext_resource type="Theme" uid="uid://vyf2d825lffk" path="res://Themes/skeleton_button.tres" id="4_yqsxc"]
+
+[node name="WorkerSlot" type="PanelContainer" unique_id=1326156049]
+theme = ExtResource("1_rxi4u")
+script = ExtResource("2_yqsxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1560179922]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1025677146]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=786715983]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_aymtj")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1901608918]
+layout_mode = 2
+
+[node name="WorkerName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1611814297]
+layout_mode = 2
+text = "Tadashi"
+
+[node name="WorkerRole" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=608068096]
+layout_mode = 2
+text = "Cleaner"
+
+[node name="Button" type="Button" parent="." unique_id=973040915]
+layout_mode = 2
+theme = ExtResource("4_yqsxc")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

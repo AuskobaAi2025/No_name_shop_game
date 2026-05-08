@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://oan7bu3ru0ld"]
+
+[ext_resource type="Script" uid="uid://cwl3qy5sqkqb7" path="res://Scenes/UIs/worker_assignment_window.gd" id="1_6mcdv"]
+[ext_resource type="Theme" uid="uid://1vvdtdswtcvo" path="res://Themes/panel_container.tres" id="2_mf4s8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5jeb"]
+bg_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="WorkerAssignmentWindow" type="CenterContainer" unique_id=938447349]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6mcdv")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2030507263]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p5jeb")
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer" unique_id=427372275]
+layout_mode = 2
+theme = ExtResource("2_mf4s8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/PanelContainer" unique_id=1769371523]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CashierAssignButton" type="Button" parent="PanelContainer/PanelContainer/VBoxContainer" unique_id=1503483636]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Cashier"
+
+[node name="CancelButton" type="Button" parent="PanelContainer/PanelContainer/VBoxContainer" unique_id=1920004238]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Cancel"
+
+[connection signal="pressed" from="PanelContainer/PanelContainer/VBoxContainer/CashierAssignButton" to="." method="_on_cashier_assign_button_pressed"]
+[connection signal="pressed" from="PanelContainer/PanelContainer/VBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

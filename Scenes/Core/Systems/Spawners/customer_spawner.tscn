@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ddaq1m5bowkj3"]
+
+[ext_resource type="Script" uid="uid://cv04s5ouugquw" path="res://Scenes/Core/Systems/Spawners/customer_spawner.gd" id="1_0202c"]
+
+[node name="CustomerSpawner" type="Node2D" unique_id=1425250898]
+script = ExtResource("1_0202c")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=248726115]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

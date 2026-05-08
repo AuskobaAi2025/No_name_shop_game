@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cul7pk25fcgpy"]
+
+[ext_resource type="Texture2D" uid="uid://bv764ij55fibf" path="res://image/items/magic_potion.png" id="1_xwwgv"]
+[ext_resource type="Script" uid="uid://dex40f5ogifce" path="res://Resources/item_data.gd" id="2_i3jcb"]
+
+[resource]
+script = ExtResource("2_i3jcb")
+id = "1013"
+item_name = "Magic Potion"
+price_sell = 2000
+price_restock = 800
+icon = ExtResource("1_xwwgv")
+metadata/_custom_type_script = "uid://dex40f5ogifce"

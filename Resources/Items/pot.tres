@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cughucjwmwvud"]
+
+[ext_resource type="Texture2D" uid="uid://tnnb3r3irb4n" path="res://image/items/pot.png" id="1_00g3q"]
+[ext_resource type="Script" uid="uid://dex40f5ogifce" path="res://Resources/item_data.gd" id="1_pmpiy"]
+
+[resource]
+script = ExtResource("1_pmpiy")
+id = "1021"
+item_name = "Pot"
+price_sell = 50
+price_restock = 10
+icon = ExtResource("1_00g3q")
+metadata/_custom_type_script = "uid://dex40f5ogifce"

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c37m2pscyc6ec"]
+
+[ext_resource type="Script" uid="uid://bqqvlp3aldx3e" path="res://Scenes/Core/Systems/inventory_manager.gd" id="1_kyliy"]
+
+[node name="InventoryManager" type="Node" unique_id=1419741545]
+script = ExtResource("1_kyliy")

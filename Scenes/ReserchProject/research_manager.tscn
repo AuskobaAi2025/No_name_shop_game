@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://daa58874fts3w"]
+
+[ext_resource type="Script" uid="uid://ign485e7fx73" path="res://Scenes/ReserchProject/research_manager.gd" id="1_f8awg"]
+[ext_resource type="Script" uid="uid://ryv4v74xkmal" path="res://Scenes/ReserchProject/research_project_data.gd" id="2_envcp"]
+[ext_resource type="Resource" uid="uid://4qxxtdeekhj8" path="res://Scenes/ReserchProject/Items/high_potion_research.tres" id="3_vs8yp"]
+
+[node name="ResearchManager" type="Node" unique_id=95049690]
+script = ExtResource("1_f8awg")
+research_projects = Array[ExtResource("2_envcp")]([ExtResource("3_vs8yp")])

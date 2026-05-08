@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cxd83y4u5acx1"]
+
+[ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="1_jr1dw"]
+[ext_resource type="Script" uid="uid://vy2d113ch5ng" path="res://Scenes/UIs/worker_panel.gd" id="1_jr55q"]
+[ext_resource type="Theme" uid="uid://0a55thve1xek" path="res://Themes/panel_input_blocker.tres" id="3_pmjnk"]
+
+[node name="WorkerPanel" type="Control" unique_id=863368112]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jr55q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=167752409]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ListContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1577009738]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_jr1dw")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ListContainer" unique_id=874720328]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+
+[node name="VboxContainer" type="VBoxContainer" parent="HBoxContainer/ListContainer/MarginContainer" unique_id=2145074661]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ListContainer/MarginContainer/VboxContainer" unique_id=837218262]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Workers"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ListContainer/MarginContainer/VboxContainer" unique_id=1917517101]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ListContainer/MarginContainer/VboxContainer/MarginContainer" unique_id=1068339060]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WorkersList" type="VBoxContainer" parent="HBoxContainer/ListContainer/MarginContainer/VboxContainer/MarginContainer/ScrollContainer" unique_id=1390844182]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StatusContainer" type="PanelContainer" parent="HBoxContainer" unique_id=591728172]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_jr1dw")
+
+[node name="VboxContainer" type="VBoxContainer" parent="HBoxContainer/StatusContainer" unique_id=1431663381]
+layout_mode = 2
+
+[node name="InputBlocker" type="Panel" parent="." unique_id=551527048]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_pmjnk")

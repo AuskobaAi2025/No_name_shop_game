@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgp7d6e7tj2fk"]
 
-[ext_resource type="Script" uid="uid://rryheufjdaj3" path="res://Scripts/MenuAndUI/inventory_ui.gd" id="1_os1l6"]
+[ext_resource type="Script" uid="uid://rryheufjdaj3" path="res://Scenes/UIs/inventory_ui.gd" id="1_os1l6"]
 [ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="2_os1l6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_os1l6"]

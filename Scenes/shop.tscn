@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://coar0w52ewb50"]
-
-[ext_resource type="Script" uid="uid://ctn4skimp326w" path="res://Scripts/shop.gd" id="1_3ps1r"]
-[ext_resource type="Resource" uid="uid://bu2venn4yh36m" path="res://Stages/Test.tres" id="2_ymrm4"]
-
-[node name="Shop" type="Node2D" unique_id=190216651]
-script = ExtResource("1_3ps1r")
-current_stage_data = ExtResource("2_ymrm4")

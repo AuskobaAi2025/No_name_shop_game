@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c6x7eb224ktyf"]
+
+[ext_resource type="Texture2D" uid="uid://cidk8x4abpj6r" path="res://image/items/high_potion.png" id="1_kncj4"]
+[ext_resource type="Script" uid="uid://dex40f5ogifce" path="res://Resources/item_data.gd" id="2_oyslj"]
+
+[resource]
+script = ExtResource("2_oyslj")
+id = "1012"
+item_name = "High Potion"
+price_sell = 1000
+price_restock = 500
+icon = ExtResource("1_kncj4")
+metadata/_custom_type_script = "uid://dex40f5ogifce"

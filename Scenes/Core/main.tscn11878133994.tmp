@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://155xx7s6y6ta"]
+
+[ext_resource type="Script" uid="uid://blyusjbdydqg5" path="res://Scenes/Core/main.gd" id="1_503l3"]
+[ext_resource type="Script" uid="uid://dg60f27dsr1kp" path="res://Scenes/Core/game_controller.gd" id="2_t5jb4"]
+[ext_resource type="PackedScene" uid="uid://bh6em45vhtso8" path="res://Scenes/UIs/pause_menu.tscn" id="3_71ocw"]
+[ext_resource type="PackedScene" uid="uid://cviv8ted166lh" path="res://Scenes/Core/Systems/pause_manager.tscn" id="4_f358m"]
+[ext_resource type="PackedScene" uid="uid://cvy5d16l0v2ta" path="res://Scenes/Core/Systems/worker_manager.tscn" id="5_qgkih"]
+[ext_resource type="Script" uid="uid://cjhnvc5o41wo2" path="res://Scenes/Core/Systems/Spawners/worker_spawners.gd" id="6_t5jb4"]
+
+[node name="Main" type="Node2D" unique_id=1421725833]
+script = ExtResource("1_503l3")
+
+[node name="GameController" type="Node2D" parent="." unique_id=907445055]
+script = ExtResource("2_t5jb4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GameController" unique_id=2006469618]
+
+[node name="PauseMenu" parent="GameController/CanvasLayer" unique_id=628138291 instance=ExtResource("3_71ocw")]
+process_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="GameController" unique_id=1983475311]
+position = Vector2(0, 10)
+zoom = Vector2(2, 2)
+
+[node name="PauseManager" parent="GameController" unique_id=1315884484 instance=ExtResource("4_f358m")]
+process_mode = 2
+
+[node name="WorkerManager" parent="GameController" unique_id=1286565629 instance=ExtResource("5_qgkih")]
+
+[node name="WorkerSpawners" type="Node" parent="GameController" unique_id=981297306]
+script = ExtResource("6_t5jb4")
+
+[node name="Workers" type="Node" parent="GameController/WorkerSpawners" unique_id=1614406128]

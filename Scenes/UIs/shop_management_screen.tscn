@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dnbv2faa4lu2m"]
 
 [ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="1_k2r1s"]
-[ext_resource type="Script" uid="uid://uf8ff1an3jw0" path="res://Scripts/MenuAndUI/shop_management_screen.gd" id="2_855q5"]
+[ext_resource type="Script" uid="uid://uf8ff1an3jw0" path="res://Scenes/UIs/shop_management_screen.gd" id="2_855q5"]
 
 [node name="ShopManagementScreen" type="Control" unique_id=867053096]
 layout_mode = 3
@@ -52,6 +52,10 @@ text = "Recruit Staff"
 layout_mode = 2
 text = "Add Dresser"
 
+[node name="AddCashier" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2092638503]
+layout_mode = 2
+text = "Add Cashier"
+
 [node name="StoreLvUp" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1836167450]
 layout_mode = 2
 text = "Level up Store"
@@ -59,4 +63,5 @@ text = "Level up Store"
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/NextDay" to="." method="_on_next_day_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/RecruitStaff" to="." method="_on_recruit_staff_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDresser" to="." method="_on_add_dresser_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddCashier" to="." method="_on_add_cashier_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StoreLvUp" to="." method="_on_store_lv_up_pressed"]

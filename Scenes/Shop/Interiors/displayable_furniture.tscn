@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b524vjjomge54"]
+
+[ext_resource type="Script" uid="uid://cnl13u78ykbrk" path="res://Scenes/Shop/Interiors/displayable_furniture.gd" id="1_0xiqy"]
+
+[node name="DisplayableFurniture" type="Node2D" unique_id=536571572]
+script = ExtResource("1_0xiqy")

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://rbdr8n6oi2ru"]
+
+[ext_resource type="Texture2D" uid="uid://bu75k2ys6s28g" path="res://image/table.png" id="1_3f47u"]
+[ext_resource type="Script" uid="uid://dd8c056c15mqg" path="res://Scenes/Shop/Interiors/cashier.gd" id="1_x7iie"]
+[ext_resource type="Texture2D" uid="uid://dlju4h1joodf6" path="res://image/Candle 3.png" id="3_ujn1t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo5ed"]
+atlas = ExtResource("3_ujn1t")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ukr8"]
+atlas = ExtResource("3_ujn1t")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o06y3"]
+atlas = ExtResource("3_ujn1t")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7acu"]
+atlas = ExtResource("3_ujn1t")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhpc8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo5ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ukr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o06y3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7acu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cashier" type="Sprite2D" unique_id=579146317]
+z_index = 50
+texture = ExtResource("1_3f47u")
+script = ExtResource("1_x7iie")
+display_capacity_bonus = 2
+slot_count = 2
+slot_positions = Array[Vector2]([Vector2(-15, -4), Vector2(6, -4)])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2133698452]
+position = Vector2(24, -16)
+sprite_frames = SubResource("SpriteFrames_xhpc8")
+autoplay = "default"
+frame = 1
+frame_progress = 0.08971178
+
+[node name="WorkerStandPos" type="Marker2D" parent="." unique_id=748266582]
+position = Vector2(0, -22)
+
+[node name="CustomerStandPos" type="Marker2D" parent="." unique_id=684417552]
+position = Vector2(0, 20)
