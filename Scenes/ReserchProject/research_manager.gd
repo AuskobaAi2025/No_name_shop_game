@@ -17,8 +17,16 @@ var completed_project_ids: Array[String] = []
 var current_project_id: String = ""
 var current_progress: float = 0.0
 
-var research_power: float = 50.0
+# Base research power per worker. This is the amount of research points a single
+# worker contributes per second before applying personality modifiers. If no
+# workers are assigned to research, this value is used to progress research at
+# a minimal pace so projects can still be completed.
+var base_research_power: float = 50.0
 var is_researching: bool = false
+
+# Reference to the WorkerManager so we can query which workers are assigned
+# to research. Provided via setup().
+var worker_manager: WorkerManager
 
 var inventory_manager: InventoryManager
 
@@ -27,12 +35,12 @@ func _ready() -> void:
 	register_projects()
 
 
-func setup(target_inventory_manager: InventoryManager) -> void:
-	inventory_manager = target_inventory_manager
 
 
-func _process(delta: float) -> void:
-	process_research(delta)
+
+func setup(target_inventory_manager: InventoryManager, target_worker_manager: WorkerManager = null) -> void:
+    inventory_manager = target_inventory_manager
+    worker_manager = target_worker_manager
 
 
 func register_projects() -> void:
@@ -71,12 +79,26 @@ func process_research(delta: float) -> void:
 	var project: ResearchProjectData = get_project_data(current_project_id)
 	if project == null:
 		push_error("[ResearchManager] Current project data not found: %s" % current_project_id)
-		stop_research()
-		return
+	# Compute research progress. If workers have been assigned to the RESEARCHER
+	# role their combined contributions (base_research_power * personality
+	# multiplier) are summed. If no researchers are assigned, a single unit
+	# of base_research_power is used to provide slow baseline progress.
+	var power: float = 0.0
+	var found_researchers: bool = false
+	if worker_manager != null:
+		# Sum contributions from all workers assigned to research
+		for worker in worker_manager.get_all_workers():
+			if worker_manager.get_worker_role(worker.worker_id) == WorkerManager.WorkRole.RESEARCHER:
+				found_researchers = true
+				var multiplier: float = 1.0
+				if worker.has_method("get_research_multiplier"):
+					multiplier = worker.get_research_multiplier()
+				power += base_research_power * multiplier
+	if not found_researchers:
+		# Default to base power if no researchers are assigned
+		power = base_research_power
 
-	current_progress += research_power * delta
-
-	emit_signal(
+	current_progress += power * delta
 		"research_progress_changed",
 		current_project_id,
 		current_progress,
