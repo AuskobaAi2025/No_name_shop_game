@@ -82,7 +82,8 @@ func process_research(delta: float) -> void:
 	# Compute research progress. If workers have been assigned to the RESEARCHER
 	# role their combined contributions (base_research_power * personality
 	# multiplier) are summed. If no researchers are assigned, a single unit
-	# of base_research_power is used to provide slow baseline progress.
+# base_research_power defines the research points a single researcher contributes.
+
 	var power: float = 0.0
 	var found_researchers: bool = false
 	if worker_manager != null:
@@ -95,8 +96,10 @@ func process_research(delta: float) -> void:
 					multiplier = worker.get_research_multiplier()
 				power += base_research_power * multiplier
 	if not found_researchers:
-		# Default to base power if no researchers are assigned
-		power = base_research_power
+	# No researchers assigned means research does not progress
+  power = 0.0
+
+	
 
 	current_progress += power * delta
 		"research_progress_changed",
