@@ -14,110 +14,50 @@ var project_database: Dictionary = {}
 
 var completed_project_ids: Array[String] = []
 
+var target_project_id: String = ""
 var current_project_id: String = ""
 var current_progress: float = 0.0
 
-var research_power: float = 50.0
+var research_power: float = 10.0
 var is_researching: bool = false
 
 var inventory_manager: InventoryManager
 
 
 func _ready() -> void:
-	register_projects()
+	_register_projects()
+
+
+func _process(delta: float) -> void:
+	print(current_progress)
+	_process_research(delta)
 
 
 func setup(target_inventory_manager: InventoryManager) -> void:
 	inventory_manager = target_inventory_manager
 
 
-func _process(delta: float) -> void:
-	process_research(delta)
-
-
-func register_projects() -> void:
-	project_database.clear()
-
-	for project in research_projects:
-		if project == null:
-			push_error("[ResearchManager] ResearchProjectData is null.")
-			continue
-
-		if project_database.has(project.project_id):
-			push_error("[ResearchManager] Duplicate project_id: %s" % project.project_id)
-			continue
-
-		project_database[project.project_id] = project
-
-
-func start_project(project_id: String) -> void:
-	if not can_start_project(project_id):
+func set_target_project(project_id: String) -> void:
+	if not can_set_target_project(project_id):
 		return
 
-	current_project_id = project_id
-	current_progress = 0.0
+	target_project_id = project_id
+	print("[ResearchManager] Target project set: %s" % target_project_id)
+
+
+func start_project() -> void:
+	if not can_start_project():
+		return
+
+	current_project_id = target_project_id
 	is_researching = true
 
 	emit_signal("research_started", current_project_id)
 
 
-func process_research(delta: float) -> void:
-	if not is_researching:
-		return
-
-	if current_project_id == "":
-		return
-
-	var project: ResearchProjectData = get_project_data(current_project_id)
-	if project == null:
-		push_error("[ResearchManager] Current project data not found: %s" % current_project_id)
-		stop_research()
-		return
-
-	current_progress += research_power * delta
-
-	emit_signal(
-		"research_progress_changed",
-		current_project_id,
-		current_progress,
-		project.required_points
-	)
-
-	if current_progress >= project.required_points:
-		complete_current_project()
-
-
-func complete_current_project() -> void:
-	if current_project_id == "":
-		return
-
-	var project: ResearchProjectData = get_project_data(current_project_id)
-	if project == null:
-		push_error("[ResearchManager] Cannot complete project. Data not found: %s" % current_project_id)
-		stop_research()
-		return
-
-	if not completed_project_ids.has(current_project_id):
-		completed_project_ids.append(current_project_id)
-
-	current_progress = project.required_points
-	is_researching = false
-
-	emit_signal("research_completed", project)
-
-	current_project_id = ""
-	current_progress = 0.0
-	
-	
-func stop_research() -> void:
-	is_researching = false
-	current_project_id = ""
-	current_progress = 0.0
-
-
-func can_start_project(project_id: String) -> bool:
-	if is_researching:
-		print("[ResearchManager] Already researching.")
+func can_set_target_project(project_id: String) -> bool:
+	if project_id == "":
+		print("[ResearchManager] project_id is empty.")
 		return false
 
 	if not project_database.has(project_id):
@@ -142,6 +82,27 @@ func can_start_project(project_id: String) -> bool:
 		return false
 
 	return true
+
+
+func can_start_project() -> bool:
+	if target_project_id == "":
+		print("[ResearchManager] No target project selected.")
+		return false
+
+	if is_researching:
+		print("[ResearchManager] Already researching.")
+		return false
+
+	if research_power <= 0:
+		print("[ResearchManager] Research power is zero.")
+		return false
+
+	return true
+
+
+func stop_research() -> void:
+	is_researching = false
+	
 
 
 func get_project_data(project_id: String) -> ResearchProjectData:
@@ -184,6 +145,7 @@ func is_project_completed(project_id: String) -> bool:
 func get_save_data() -> Dictionary:
 	return {
 		"completed_project_ids": completed_project_ids.duplicate(),
+		"target_project_id": target_project_id,
 		"current_project_id": current_project_id,
 		"current_progress": current_progress,
 		"is_researching": is_researching,
@@ -197,15 +159,83 @@ func load_from_data(data: Dictionary) -> void:
 		for project_id in data["completed_project_ids"]:
 			completed_project_ids.append(project_id)
 
+	target_project_id = data.get("target_project_id", "")
 	current_project_id = data.get("current_project_id", "")
 	current_progress = data.get("current_progress", 0.0)
 	is_researching = data.get("is_researching", false)
 
+	if target_project_id != "" and not project_database.has(target_project_id):
+		push_error("[ResearchManager] Loaded target_project_id does not exist: %s" % target_project_id)
+		target_project_id = ""
+
 	if current_project_id != "" and not project_database.has(current_project_id):
 		push_error("[ResearchManager] Loaded current_project_id does not exist: %s" % current_project_id)
 		stop_research()
-		
-		
+
+
+func _register_projects() -> void:
+	project_database.clear()
+
+	for project in research_projects:
+		if project == null:
+			push_error("[ResearchManager] ResearchProjectData is null.")
+			continue
+
+		if project_database.has(project.project_id):
+			push_error("[ResearchManager] Duplicate project_id: %s" % project.project_id)
+			continue
+
+		project_database[project.project_id] = project
+
+
+func _process_research(delta: float) -> void:
+	if not is_researching:
+		return
+
+	if current_project_id == "":
+		return
+
+	var project: ResearchProjectData = get_project_data(current_project_id)
+	if project == null:
+		push_error("[ResearchManager] Current project data not found: %s" % current_project_id)
+		stop_research()
+		return
+
+	current_progress += research_power * delta
+
+	emit_signal(
+		"research_progress_changed",
+		current_project_id,
+		current_progress,
+		project.required_points
+	)
+
+	if current_progress >= project.required_points:
+		_complete_current_project()
+
+
+func _complete_current_project() -> void:
+	if current_project_id == "":
+		return
+
+	var project: ResearchProjectData = get_project_data(current_project_id)
+	if project == null:
+		push_error("[ResearchManager] Cannot complete project. Data not found: %s" % current_project_id)
+		stop_research()
+		return
+
+	if not completed_project_ids.has(current_project_id):
+		completed_project_ids.append(current_project_id)
+
+	current_progress = project.required_points
+	is_researching = false
+
+	emit_signal("research_completed", project)
+
+	current_project_id = ""
+	current_progress = 0.0
+
+
 func _has_required_items(project: ResearchProjectData) -> bool:
 	if inventory_manager == null:
 		push_error("[ResearchManager] inventory_manager is null.")
@@ -220,4 +250,3 @@ func _has_required_items(project: ResearchProjectData) -> bool:
 			return false
 
 	return true
-		

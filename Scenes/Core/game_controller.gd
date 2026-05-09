@@ -1,7 +1,8 @@
 extends Node2D
 
 var operation_ui_scene: PackedScene = preload("res://Scenes/UIs/operation_ui.tscn")
-var ui_scene: PackedScene = preload("res://Scenes/UIs/inventory_ui.tscn")
+var inventory_ui_scene: PackedScene = preload("res://Scenes/UIs/inventory_ui.tscn")
+var research_screen_scene: PackedScene = preload("res://Scenes/UIs/Reserch/reserch_screen.tscn")
 var shop_mgm_screen: PackedScene = preload("res://Scenes/UIs/shop_management_screen.tscn")
 var shop_scene: PackedScene = preload("res://Scenes/Shop/shop.tscn")
 var worker_mgm_panel: PackedScene = preload("res://Scenes/UIs/worker_panel.tscn")
@@ -36,7 +37,8 @@ func _process(_delta: float) -> void:
 
 func _handle_input() -> void:
 	if Input.is_action_just_pressed("test"):
-		research_manager.start_project("1013")
+		pass
+		#research_manager.start_project("1013")
 		
 	if Input.is_action_just_pressed("save"):
 		save_game()
@@ -103,6 +105,8 @@ func game_start() -> void:
 	
 	
 	worker_manager.enter_gameplay_mode()
+	
+	research_manager.start_project()
 	
 	_connecting_signals()
 	
@@ -187,6 +191,16 @@ func load_game() -> void:
 func spawn_worker() -> void:
 	worker_spawners.spawn_hired_worker("2001", "Staff")
 	
+	
+func show_reserach_screen() -> void:
+	var screen_insntace: ReserchScreen = research_screen_scene.instantiate()
+	canvas_layer.add_child(screen_insntace)
+	
+	var available_pjs: Array = research_manager.get_available_projects()
+	
+	screen_insntace.setup(research_manager, available_pjs)
+	
+	
 
 func change_display_item(slot: ItemSlot) -> void:
 	store_display_item_manager.add_display_item(slot, shop_instance)
@@ -212,7 +226,7 @@ func show_inventory_menu() -> void:
 	if ui_instance:
 		return
 		
-	ui_instance = ui_scene.instantiate()
+	ui_instance = inventory_ui_scene.instantiate()
 	ui_instance.setup(self, store_display_item_manager, inventory_manager)
 	
 	canvas_layer.add_child(ui_instance)
@@ -253,6 +267,9 @@ func proceed_next_day() -> void:
 	var shop_mgm_ui_instance = shop_mgm_screen.instantiate()
 	canvas_layer.add_child(shop_mgm_ui_instance)
 	shop_mgm_ui_instance.setup(self, shop_instance)
+	
+	#Start reserch
+	research_manager.stop_research()
 	
 	
 func _connecting_signals() -> void:

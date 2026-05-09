@@ -40,6 +40,10 @@ func _on_cashier_assign_button_pressed() -> void:
 	self.queue_free()
 
 
+func _on_reseacher_assign_button_pressed() -> void:
+	print("Assign reseacher role [FUTURE]")
+
+
 func _on_cancel_button_pressed() -> void:
 	var enable_blocking: bool = false
 	parent_panel.set_input_blocking(enable_blocking)

@@ -56,6 +56,10 @@ text = "Add Dresser"
 layout_mode = 2
 text = "Add Cashier"
 
+[node name="ChooseReseach" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=651266351]
+layout_mode = 2
+text = "Choose Reserch"
+
 [node name="StoreLvUp" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1836167450]
 layout_mode = 2
 text = "Level up Store"
@@ -64,4 +68,5 @@ text = "Level up Store"
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/RecruitStaff" to="." method="_on_recruit_staff_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddDresser" to="." method="_on_add_dresser_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AddCashier" to="." method="_on_add_cashier_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ChooseReseach" to="." method="_on_choose_reseach_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StoreLvUp" to="." method="_on_store_lv_up_pressed"]

@@ -42,10 +42,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Cashier"
 
+[node name="ReseacherAssignButton" type="Button" parent="PanelContainer/PanelContainer/VBoxContainer" unique_id=1824685030]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Researcher
+"
+
 [node name="CancelButton" type="Button" parent="PanelContainer/PanelContainer/VBoxContainer" unique_id=1920004238]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Cancel"
 
 [connection signal="pressed" from="PanelContainer/PanelContainer/VBoxContainer/CashierAssignButton" to="." method="_on_cashier_assign_button_pressed"]
+[connection signal="pressed" from="PanelContainer/PanelContainer/VBoxContainer/ReseacherAssignButton" to="." method="_on_reseacher_assign_button_pressed"]
 [connection signal="pressed" from="PanelContainer/PanelContainer/VBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

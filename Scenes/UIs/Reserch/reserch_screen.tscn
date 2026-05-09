@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dhxsya8wndehg"]
+
+[ext_resource type="Theme" uid="uid://dxubcchrrfomr" path="res://Themes/ui_panel_container.tres" id="1_rdkv6"]
+[ext_resource type="Script" uid="uid://bqw8jrgbc78ov" path="res://Scenes/UIs/Reserch/reserch_screen.gd" id="2_5ew4k"]
+
+[node name="ReserchScreen" type="Control" unique_id=867053096]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rdkv6")
+script = ExtResource("2_5ew4k")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2127763817]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -50.0
+offset_right = 57.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=375951597]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1725279348]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="AvailableResearchPJs" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=958524919]
+layout_mode = 2
+
+[node name="DynamicSlots" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/AvailableResearchPJs" unique_id=1356526116]
+layout_mode = 2
+
+[node name="Footer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/AvailableResearchPJs" unique_id=1679884172]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/AvailableResearchPJs/Footer" unique_id=1755740621]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/AvailableResearchPJs/Footer/CancelButton" to="." method="_on_cancel_button_pressed"]

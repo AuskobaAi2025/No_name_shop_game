@@ -38,6 +38,11 @@ func _on_add_cashier_pressed() -> void:
 		print("Failed to add a cashier")
 
 
+func _on_choose_reseach_pressed() -> void:
+	game_controller.show_reserach_screen()
+	print("Open Research UI [Future]")
+
+
 func _on_store_lv_up_pressed() -> void:
 	print("Storelv increased")
 	shop_instance.leveup_store()
